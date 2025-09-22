@@ -1,1 +1,533 @@
+<style>
+    /* Paleta de cores: branco, verde claro (#E0F7E0), azul claro (#E0F7FA) */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #FFFFFF;
+        color: #333333;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    
+    /* Menu fixo adaptado para embed */
+    nav {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background-color: #E0F7E0;
+        padding: 12px 0;
+        text-align: center;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        border-bottom: 1px solid #FFFFFF;
+    }
+    
+    nav a {
+        margin: 0 18px;
+        text-decoration: none;
+        color: #333333;
+        font-weight: bold;
+        font-size: 16px;
+        transition: color 0.3s ease;
+        display: inline-block;
+    }
+    
+    nav a:hover {
+        color: #007BFF;
+        transform: translateY(-1px);
+    }
+    
+    header {
+        background-color: #E0F7FA;
+        padding: 25px 20px;
+        text-align: center;
+        border-bottom: 3px solid #E0F7E0;
+        margin-bottom: 20px;
+    }
+    
+    header h1 {
+        font-size: 2.2em;
+        color: #0056B3;
+        margin: 0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        letter-spacing: 1px;
+    }
+    
+    section {
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        min-height: 60vh;
+    }
+    
+    #home {
+        background: linear-gradient(135deg, #E0F7FA 0%, #FFFFFF 100%);
+        text-align: center;
+        padding-top: 80px;
+    }
+    
+    .reflection {
+        font-style: italic;
+        font-size: 1.3em;
+        margin: 30px 0;
+        color: #666666;
+        background-color: rgba(255,255,255,0.8);
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #E0F7E0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    
+    .highlight {
+        background-color: #E0F7E0;
+        padding: 25px;
+        border-radius: 12px;
+        margin: 30px 0;
+        border: 1px solid rgba(255,255,255,0.5);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    
+    .highlight h3 {
+        color: #0056B3;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+    }
+    
+    h2 {
+        color: #0056B3;
+        border-bottom: 2px solid #E0F7E0;
+        padding-bottom: 12px;
+        margin-bottom: 25px;
+        font-size: 2em;
+        text-align: center;
+        position: relative;
+    }
+    
+    h2::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, #E0F7E0, #E0F7FA);
+        margin: 10px auto;
+        border-radius: 2px;
+    }
+    
+    h3 {
+        color: #007BFF;
+        margin-bottom: 15px;
+        font-size: 1.3em;
+    }
+    
+    p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .gallery img {
+        width: 280px;
+        height: 200px;
+        object-fit: cover;
+        margin: 10px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .gallery img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    
+    .library {
+        background-color: #F8F9FA;
+        padding: 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+    
+    .library ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .library li {
+        margin: 15px 0;
+        padding: 12px;
+        background: white;
+        border-radius: 8px;
+        border-left: 4px solid #E0F7E0;
+        transition: all 0.3s ease;
+    }
+    
+    .library li:hover {
+        background-color: #E0F7FA;
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .library a {
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1em;
+    }
+    
+    .library a:hover {
+        text-decoration: underline;
+        color: #0056B3;
+    }
+    
+    .events {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+    
+    .event {
+        background: linear-gradient(135deg, #E0F7FA 0%, #F8F9FA 100%);
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid rgba(255,255,255,0.6);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
+    }
+    
+    .event:hover {
+        transform: translateY(-5px);
+    }
+    
+    .event img {
+        max-width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .event h3 {
+        margin-bottom: 10px;
+        color: #0056B3;
+    }
+    
+    article {
+        background: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-left: 4px solid #E0F7E0;
+    }
+    
+    article h3 {
+        margin-bottom: 10px;
+        color: #007BFF;
+    }
+    
+    footer {
+        background: linear-gradient(135deg, #E0F7E0 0%, #E0F7FA 100%);
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 50px;
+        border-top: 3px solid white;
+    }
+    
+    footer p {
+        margin: 8px 0;
+        color: #555;
+    }
+    
+    /* Responsividade para mobile */
+    @media (max-width: 768px) {
+        nav a {
+            margin: 0 10px;
+            font-size: 14px;
+            display: block;
+            padding: 5px 0;
+        }
+        
+        header h1 {
+            font-size: 1.8em;
+        }
+        
+        section {
+            padding: 20px 15px;
+        }
+        
+        .gallery img {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+        }
+        
+        .events {
+            grid-template-columns: 1fr;
+        }
+        
+        .reflection {
+            font-size: 1.1em;
+            padding: 15px;
+        }
+    }
+    
+    /* Smooth scroll para navegação */
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    /* Animação de fade-in para seções */
+    section {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
 
+<nav>
+    <a href="#home">Início</a>
+    <a href="#about">Sobre</a>
+    <a href="#gallery">Galeria</a>
+    <a href="#library">Biblioteca</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#info">Informativos</a>
+</nav>
+
+<header>
+    <h1>Tenda de Umbanda Pai Oxalá Caboclo Pena Roxa</h1>
+</header>
+
+<section id="home">
+    <div class="reflection" id="reflection-text">
+        Carregando mensagem de luz...
+    </div>
+    <div class="highlight">
+        <h3>🌿 Próximo Atendimento</h3>
+        <p><strong>Todas as quintas-feiras às 19h:</strong> Gira de Caboclo</p>
+        <p><strong>Segunda quinta-feira do mês:</strong> Gira de Preto Velho</p>
+        <p><em>Venha receber as bênçãos e orientações espirituais</em></p>
+    </div>
+</section>
+
+<section id="about">
+    <h2>🌸 Sobre o Centro</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+        <div>
+            <p><strong>Bem-vindo à Tenda de Umbanda Pai Oxalá Caboclo Pena Roxa!</strong></p>
+            <p>Um espaço sagrado dedicado à prática espiritual da Umbanda, onde promovemos a caridade, a paz interior e o desenvolvimento espiritual de todos que nos visitam.</p>
+            <p>Nosso trabalho é fundamentado nos princípios da luz, da compaixão e da evolução contínua, guiados pelas entidades de luz que nos acompanham.</p>
+        </div>
+        <div style="background: #F8F9FA; padding: 20px; border-radius: 10px;">
+            <h3>📅 Funcionamento</h3>
+            <p><strong>📍 Localização:</strong> Araraquara / SP</p>
+            <p><strong>🕐 Horário:</strong> Quintas-feiras às 19h</p>
+            <p><strong>🎭 Gira de Caboclo:</strong> Todas as quintas</p>
+            <p><strong>👴 Gira de Preto Velho:</strong> 2ª quinta do mês</p>
+            <p><strong>🏠 Endereço completo:</strong><br>
+            [Insira o endereço completo aqui]</p>
+        </div>
+    </div>
+    <div style="text-align: center; background: #E0F7FA; padding: 25px; border-radius: 12px; margin-top: 30px;">
+        <h3>🌟 Nossa Missão</h3>
+        <p><em>"Fundado com o propósito de auxiliar no caminho espiritual, o Centro conta com a participação e sustentação do <strong>Lar Otoniel de Camargo</strong> e da <strong>Associação Cultural Ary Luis Bombarda</strong>, também localizados em Araraquara/SP."</em></p>
+        <p>Nossa missão é disseminar os ensinamentos da Umbanda, promovendo harmonia, cura espiritual e desenvolvimento pessoal através do amor e da caridade.</p>
+    </div>
+</section>
+
+<section id="gallery">
+    <h2>📸 Galeria de Fotos</h2>
+    <p style="text-align: center; margin-bottom: 30px; color: #666;">Momentos de luz, trabalho espiritual e fraternidade</p>
+    <div class="gallery">
+        <!-- SUBSTITUA OS IDs PELOS REAIS DO GOOGLE DRIVE -->
+        <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_1" alt="Gira de Caboclo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
+        <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_2" alt="Trabalho espiritual" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
+        <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_3" alt="Momento de fraternidade" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
+        <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_4" alt="Ambiente sagrado" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
+        <!-- Adicione mais imagens conforme necessário -->
+    </div>
+</section>
+
+<section id="library">
+    <h2>📚 Biblioteca Espiritual</h2>
+    <p style="text-align: center; margin-bottom: 25px; color: #666;">Acervo de materiais para consulta e estudo espiritual</p>
+    <div class="library">
+        <ul>
+            <!-- SUBSTITUA OS IDs PELOS REAIS DO GOOGLE DRIVE -->
+            <li><a href="https://drive.google.com/uc?id=INSIRA_ID_LIVRO_PDF&export=download" target="_blank">📖 Fundamentos da Umbanda - Livro Completo</a></li>
+            <li><a href="https://drive.google.com/uc?id=INSIRA_ID_APOSTILA&export=download" target="_blank">📝 Apostila de Linhas de Trabalho</a></li>
+            <li><a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIO&export=download" target="_blank">🎵 Áudio: Meditação com Caboclo Pena Roxa</a></li>
+            <li><a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIOBOOK&export=download" target="_blank">🎧 Audiobook: Sabedoria dos Pretos Velhos</a></li>
+            <li><a href="https://drive.google.com/uc?id=INSIRA_ID_PDF_2&export=download" target="_blank">📄 Hinos e Pontos Cantados</a></li>
+            <li><a href="https://drive.google.com/uc?id=INSIRA_ID_MEDITACAO&export=download" target="_blank">🧘‍♀️ Guia de Meditação Guiada</a></li>
+            <!-- Adicione mais itens conforme necessário -->
+        </ul>
+    </div>
+</section>
+
+<section id="agenda">
+    <h2>📅 Agenda e Eventos</h2>
+    <p style="text-align: center; margin-bottom: 25px; color: #666;">Atividades do Centro, Lar Otoniel de Camargo e Associação Cultural Ary Luis Bombarda</p>
+    <div class="events">
+        <div class="event">
+            <h3>🌿 Gira de Caboclo - Tenda Pai Oxalá</h3>
+            <p><strong>Data:</strong> Todas as quintas-feiras<br>
+            <strong>Horário:</strong> 19h<br>
+            <strong>Local:</strong> Tenda de Umbanda</p>
+            <img src="https://drive.google.com/uc?id=INSIRA_ID_CARTAZ_GIRA" alt="Cartaz Gira de Caboclo" onerror="this.style.display='none'" style="height: 180px;">
+        </div>
+        <div class="event">
+            <h3>👴 Gira de Preto Velho - Evento Mensal</h3>
+            <p><strong>Data:</strong> 2ª quinta-feira do mês<br>
+            <strong>Horário:</strong> 19h<br>
+            <strong>Tema:</strong> Sabedoria ancestral</p>
+            <img src="https://drive.google.com/uc?id=INSIRA_ID_CARTAZ_PRETO_VELHO" alt="Cartaz Gira de Preto Velho" onerror="this.style.display='none'" style="height: 180px;">
+        </div>
+        <div class="event">
+            <h3>🏠 Atividade no Lar Otoniel de Camargo</h3>
+            <p><strong>Data:</strong> [Insira data]<br>
+            <strong>Horário:</strong> [Insira horário]<br>
+            <strong>Atividade:</strong> [Descreva a atividade]</p>
+            <!-- Adicione imagem se disponível -->
+        </div>
+        <div class="event">
+            <h3>🎭 Evento Associação Ary Luis Bombarda</h3>
+            <p><strong>Data:</strong> [Insira data]<br>
+            <strong>Horário:</strong> [Insira horário]<br>
+            <strong>Atividade:</strong> [Descreva o evento cultural]</p>
+            <!-- Adicione imagem se disponível -->
+        </div>
+    </div>
+</section>
+
+<section id="info">
+    <h2>🌟 Espaço Informativo</h2>
+    <p style="text-align: center; margin-bottom: 30px; color: #666;">Conhecendo a Umbanda, suas linhas de trabalho e fundamentos</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-bottom: 30px;">
+        <article>
+            <h3>🌿 O que é Umbanda?</h3>
+            <p>A Umbanda é uma religião brasileira que sincretiza elementos africanos, indígenas e católicos, focada na caridade e na evolução espiritual. É uma fé viva que valoriza a conexão com a natureza e as energias espirituais.</p>
+        </article>
+        
+        <article>
+            <h3>🗡️ Linhas de Trabalho</h3>
+            <p>Cada linha possui sua própria sabedoria: Caboclos trazem força e proteção, Pretos Velhos oferecem sabedoria ancestral, Crianças iluminam com pureza, e Exus trabalham na justiça cósmica.</p>
+        </article>
+        
+        <article>
+            <h3>✨ Fundamentos Espirituais</h3>
+            <p>A Umbanda ensina que todos somos espíritos em evolução. Através da caridade, do respeito às leis divinas e do trabalho em conjunto com as entidades, alcançamos o crescimento espiritual.</p>
+        </article>
+    </div>
+    
+    <div style="background: #E0F7FA; padding: 25px; border-radius: 12px; text-align: center;">
+        <h3>🌈 Notícias do Centro</h3>
+        <p>Acompanhe aqui as novidades, mensagens das entidades e comunicados importantes do nosso trabalho espiritual.</p>
+        <p><em>[Espaço para inserir notícias recentes]</em></p>
+    </div>
+</section>
+
+<footer>
+    <p>🌿 <strong>Tenda de Umbanda Pai Oxalá Caboclo Pena Roxa</strong> 🌿</p>
+    <p>📍 Araraquara / SP | 📧 [Insira email] | 📞 [Insira telefone]</p>
+    <p style="margin-top: 15px; font-size: 0.9em; color: #888;">
+        Desenvolvido com amor e luz ✨ | Integração com Google Drive para mídias espirituais
+    </p>
+</footer>
+
+<script>
+    // Frases de reflexão dinâmicas com rotação automática
+    const reflections = [
+        "🌿 A luz espiritual ilumina o caminho de todos que buscam a verdade.",
+        "✨ Na Umbanda, encontramos paz, orientação e amor incondicional.",
+        "🌸 A caridade é o maior portal para a evolução espiritual.",
+        "🙏 Que Oxalá abençoe sua jornada com paz e sabedoria.",
+        "🌟 Cada gira é uma oportunidade de crescimento e conexão divina.",
+        "💫 As entidades de luz sempre estão ao nosso lado, guiando-nos.",
+        "🌺 Na simplicidade da fé, encontramos a verdadeira força espiritual."
+    ];
+    
+    let currentIndex = 0;
+    const reflectionText = document.getElementById('reflection-text');
+    
+    function rotateReflection() {
+        reflectionText.style.opacity = '0';
+        setTimeout(() => {
+            reflectionText.innerHTML = `<em>${reflections[currentIndex]}</em>`;
+            reflectionText.style.transition = 'opacity 0.5s ease';
+            reflectionText.style.opacity = '1';
+            currentIndex = (currentIndex + 1) % reflections.length;
+        }, 250);
+    }
+    
+    // Inicializa a primeira frase
+    reflectionText.innerHTML = `<em>${reflections[0]}</em>`;
+    setInterval(rotateReflection, 6000); // Muda a cada 6 segundos
+    
+    // Smooth scroll para os links do menu
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Efeito de loading para imagens
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('.gallery img, .event img');
+        images.forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.3s ease';
+        });
+    });
+    
+    // Adiciona efeito de scroll reveal
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observa todas as seções
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+</script>
