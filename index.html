@@ -42,16 +42,19 @@
     }
     
     .header-title h1 {
-        font-size: 1.4em;
+        font-size: 1.6em; /* Reduzido levemente para melhor quebra */
         color: #0056B3;
         margin: 0;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        letter-spacing: 1px;
+        letter-spacing: 0.5px; /* Reduzido para melhor quebra */
         font-weight: 700;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 300px;
+        line-height: 1.2; /* Permite quebra natural */
+        hyphens: auto; /* Quebra em sílabas */
+        word-wrap: break-word;
+        overflow: visible; /* Remove corte */
+        text-overflow: clip; /* Remove reticências */
+        width: 100%;
+        text-align: left;
     }
     
     /* ÍCONE ESPIRITUAL ANTES DO TÍTULO */
@@ -60,6 +63,7 @@
         margin-right: 12px;
         font-size: 1.4em;
         animation: gentleFloat 3s ease-in-out infinite;
+        flex-shrink: 0; /* Ícone não encolhe */
     }
     
     @keyframes gentleFloat {
@@ -122,10 +126,11 @@
     
     /* CONTEÚDO PRINCIPAL - OFFSET para header fixo */
     .main-content {
-        padding-top: 100px;
+        padding-top: 110px; /* Aumentado para nova altura do header */
         min-height: 100vh;
     }
     
+    /* O RESTO DO CSS FICA IGUAL AO ANTERIOR */
     section {
         padding: 40px 20px;
         max-width: 1200px;
