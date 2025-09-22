@@ -14,7 +14,7 @@
         overflow-x: hidden;
     }
     
-    /* HEADER UNIFICADO - Título à esquerda, Menu à direita */
+    /* HEADER UNIFICADO - Título completo na mesma linha */
     .header-unified {
         position: fixed;
         top: 0;
@@ -33,75 +33,81 @@
         box-sizing: border-box;
     }
     
-    /* TÍTULO - Alinhado à esquerda */
+    /* CONTAINER DO TÍTULO - Flexível para ajustar tamanho */
     .header-title {
         flex: 1;
         display: flex;
         align-items: center;
-        max-width: 500px; /* Aumentado */
+        max-width: 60%; /* Dá mais espaço para o título */
+        min-width: 0; /* Permite encolher se necessário */
     }
     
     .header-title h1 {
-        font-size: 1.6em; /* Reduzido levemente para melhor quebra */
         color: #0056B3;
         margin: 0;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        letter-spacing: 0.5px; /* Reduzido para melhor quebra */
         font-weight: 700;
-        line-height: 1.2; /* Permite quebra natural */
-        hyphens: auto; /* Quebra em sílabas */
-        word-wrap: break-word;
-        overflow: visible; /* Remove corte */
-        text-overflow: clip; /* Remove reticências */
+        white-space: nowrap; /* NÃO quebra linha */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Só corta se realmente necessário */
         width: 100%;
         text-align: left;
+        line-height: 1.2;
+        /* FONT-SIZE RESPONSIVO DINÂMICO */
+        font-size: clamp(1.1em, 2.5vw + 0.5em, 1.8em); /* Ajusta de 1.1em a 1.8em baseado na tela */
+        letter-spacing: clamp(0.5px, 1vw, 1px); /* Espaçamento dinâmico */
     }
     
-    /* ÍCONE ESPIRITUAL ANTES DO TÍTULO */
-    .header-title::before {
-        content: '🌿';
-        margin-right: 12px;
-        font-size: 1.4em;
+    /* ÍCONE ESPIRITUAL - Posição absoluta para não ocupar espaço */
+    .title-icon {
+        position: absolute;
+        left: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: clamp(1.2em, 2.5vw, 1.6em);
         animation: gentleFloat 3s ease-in-out infinite;
-        flex-shrink: 0; /* Ícone não encolhe */
+        z-index: 1001;
+        pointer-events: none;
     }
     
     @keyframes gentleFloat {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-3px); }
+        0%, 100% { transform: translateY(-50%) translateY(0px); }
+        50% { transform: translateY(-50%) translateY(-3px); }
     }
     
-    /* MENU - Alinhado à direita */
+    /* MENU - Otimizado para dar mais espaço ao título */
     .header-menu {
         flex: 0 0 auto;
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 2px;
+        margin-left: 20px; /* Pequeno espaçamento do título */
     }
     
     .header-menu nav {
         display: flex;
         align-items: center;
-        gap: 2px;
+        gap: 1px; /* Espaçamento mínimo entre botões */
     }
     
     .header-menu nav a {
         text-decoration: none;
         color: #333333;
         font-weight: 600;
-        font-size: 14px;
-        padding: 8px 12px;
-        border-radius: 20px;
+        font-size: clamp(12px, 2vw, 14px); /* Fonte menor e responsiva */
+        padding: 6px 10px; /* Padding reduzido */
+        border-radius: 18px;
         transition: all 0.3s ease;
         white-space: nowrap;
         position: relative;
-        background: rgba(255,255,255,0.6);
+        background: rgba(255,255,255,0.7);
         backdrop-filter: blur(10px);
+        min-width: fit-content; /* Cada botão ocupa só o necessário */
     }
     
     .header-menu nav a:hover {
         color: #007BFF;
-        background: rgba(0,123,255,0.1);
+        background: rgba(0,123,255,0.15);
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0,123,255,0.2);
     }
@@ -117,6 +123,7 @@
         padding: 5px;
         border-radius: 50%;
         transition: all 0.3s ease;
+        margin-left: 10px;
     }
     
     .mobile-menu-toggle:hover {
@@ -124,13 +131,12 @@
         transform: rotate(90deg);
     }
     
-    /* CONTEÚDO PRINCIPAL - OFFSET para header fixo */
+    /* CONTEÚDO PRINCIPAL */
     .main-content {
-        padding-top: 110px; /* Aumentado para nova altura do header */
+        padding-top: 100px;
         min-height: 100vh;
     }
     
-    /* O RESTO DO CSS FICA IGUAL AO ANTERIOR */
     section {
         padding: 40px 20px;
         max-width: 1200px;
@@ -324,24 +330,56 @@
         color: #555;
     }
     
-    /* RESPONSIVIDADE */
+    /* RESPONSIVIDADE - Mantém tudo na mesma linha até 768px */
+    @media (max-width: 1024px) {
+        .header-title {
+            max-width: 55%;
+        }
+        
+        .header-menu nav a {
+            font-size: 13px;
+            padding: 5px 8px;
+        }
+    }
+    
     @media (max-width: 768px) {
+        /* AQUI QUEBRA PARA MOBILE - Menu hambúrguer */
         .header-unified {
             padding: 12px 15px;
             height: 70px;
-            flex-direction: column;
-            gap: 10px;
+        }
+        
+        .header-title {
+            max-width: 70%;
+            position: relative; /* Para posicionar o ícone */
         }
         
         .header-title h1 {
-            font-size: 1.4em;
-            max-width: 200px;
-            text-align: center;
+            font-size: clamp(1em, 4vw, 1.3em);
+            letter-spacing: 0.3px;
+        }
+        
+        .title-icon {
+            left: 15px;
+            font-size: clamp(1.1em, 3vw, 1.4em);
         }
         
         .header-menu {
-            width: 100%;
-            justify-content: center;
+            margin-left: 10px;
+        }
+        
+        .header-menu nav a {
+            font-size: 12px;
+            padding: 4px 6px;
+            border-radius: 12px;
+        }
+        
+        .header-menu nav {
+            gap: 0;
+        }
+        
+        .mobile-menu-toggle {
+            display: block;
         }
         
         .header-menu nav {
@@ -362,14 +400,11 @@
         }
         
         .header-menu nav a {
-            margin: 5px 0;
-            padding: 12px;
+            margin: 3px 0;
+            padding: 10px;
             text-align: center;
             width: 100%;
-        }
-        
-        .mobile-menu-toggle {
-            display: block;
+            font-size: 14px;
         }
         
         .main-content {
@@ -397,9 +432,16 @@
     }
     
     @media (max-width: 480px) {
+        .header-title {
+            max-width: 65%;
+        }
+        
         .header-title h1 {
-            font-size: 1.2em;
-            max-width: 150px;
+            font-size: clamp(0.9em, 5vw, 1.1em);
+        }
+        
+        .title-icon {
+            left: 12px;
         }
         
         .header-unified {
@@ -427,8 +469,9 @@
     }
 </style>
 
-<!-- HEADER UNIFICADO -->
+<!-- HEADER UNIFICADO COM ÍCONE POSICIONADO -->
 <div class="header-unified">
+    <div class="title-icon">🌿</div>
     <div class="header-title">
         <h1>Tenda de Umbanda Pai Oxalá Caboclo Pena Roxa</h1>
     </div>
@@ -489,7 +532,6 @@
         <h2>📸 Galeria de Fotos</h2>
         <p style="text-align: center; margin-bottom: 30px; color: #666;">Momentos de luz, trabalho espiritual e fraternidade</p>
         <div class="gallery">
-            <!-- SUBSTITUA OS IDs PELOS REAIS DO GOOGLE DRIVE -->
             <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_1" alt="Gira de Caboclo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
             <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_2" alt="Trabalho espiritual" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
             <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_3" alt="Momento de fraternidade" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
@@ -630,7 +672,7 @@
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const headerOffset = 100; // Altura do header
+                const headerOffset = 100;
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                 
