@@ -61,21 +61,35 @@
         letter-spacing: clamp(0.5px, 1vw, 1px); /* Espaçamento dinâmico */
     }
     
-    /* ÍCONE ESPIRITUAL - Posição absoluta para não ocupar espaço */
+    /* ÍCONE CABOCLO - Arco e Flecha Indígena */
     .title-icon {
         position: absolute;
         left: 25px; /* Ajustado para dar mais espaço ao texto */
         top: 50%;
         transform: translateY(-50%);
-        font-size: clamp(1.2em, 2.5vw, 1.6em);
+        font-size: clamp(1.4em, 3vw, 1.8em); /* Ligeiramente maior para o arco */
         animation: gentleFloat 3s ease-in-out infinite;
         z-index: 1001;
         pointer-events: none;
+        /* COR ESPECIAL PARA O CABOCLO */
+        filter: drop-shadow(0 1px 2px rgba(139, 69, 19, 0.3)); /* Sombra marrom sutil */
+        color: #8B4513; /* Marrom indígena */
     }
     
+    /* ANIMAÇÃO ESPECÍFICA PARA O ARCO E FLECHA */
     @keyframes gentleFloat {
-        0%, 100% { transform: translateY(-50%) translateY(0px); }
-        50% { transform: translateY(-50%) translateY(-3px); }
+        0%, 100% { 
+            transform: translateY(-50%) rotate(0deg) scale(1); 
+        }
+        25% { 
+            transform: translateY(-50%) rotate(2deg) scale(1.02); 
+        }
+        75% { 
+            transform: translateY(-50%) rotate(-1deg) scale(0.98); 
+        }
+        50% { 
+            transform: translateY(-50%) translateY(-3px) rotate(0deg); 
+        }
     }
     
     /* MENU - Otimizado para dar mais espaço ao título */
@@ -342,6 +356,7 @@
         
         .title-icon {
             left: 30px; /* Ícone mais próximo em tablets */
+            font-size: clamp(1.3em, 2.8vw, 1.7em);
         }
         
         .header-menu nav a {
@@ -370,7 +385,7 @@
         
         .title-icon {
             left: 20px; /* Ícone mais próximo no mobile */
-            font-size: clamp(1.1em, 3vw, 1.4em);
+            font-size: clamp(1.2em, 3.5vw, 1.5em);
         }
         
         .header-menu {
@@ -452,6 +467,7 @@
         
         .title-icon {
             left: 18px; /* Ícone ainda mais próximo em celulares pequenos */
+            font-size: clamp(1.1em, 4vw, 1.4em);
         }
         
         .header-unified {
@@ -479,9 +495,9 @@
     }
 </style>
 
-<!-- HEADER UNIFICADO COM ESPAÇAMENTO MAIOR -->
+<!-- HEADER UNIFICADO COM ÍCONE CABOCLO -->
 <div class="header-unified">
-    <div class="title-icon">🌿</div>
+    <div class="title-icon">🏹</div>
     <div class="header-title">
         <h1>Tenda de Umbanda Pai Oxalá - Caboclo Pena Roxa</h1>
     </div>
@@ -506,7 +522,7 @@
             Carregando mensagem de luz...
         </div>
         <div class="highlight">
-            <h3>🌿 Próximo Atendimento</h3>
+            <h3>🏹 Próximo Atendimento</h3>
             <p><strong>Todas as quintas-feiras às 19h:</strong> Gira de Caboclo</p>
             <p><strong>Segunda quinta-feira do mês:</strong> Gira de Preto Velho</p>
             <p><em>Venha receber as bênçãos e orientações espirituais</em></p>
@@ -569,7 +585,7 @@
         <p style="text-align: center; margin-bottom: 25px; color: #666;">Atividades do Centro, Lar Otoniel de Camargo e Associação Cultural Ary Luis Bombarda</p>
         <div class="events">
             <div class="event">
-                <h3>🌿 Gira de Caboclo - Tenda Pai Oxalá</h3>
+                <h3>🏹 Gira de Caboclo - Tenda Pai Oxalá</h3>
                 <p><strong>Data:</strong> Todas as quintas-feiras<br>
                 <strong>Horário:</strong> 19h<br>
                 <strong>Local:</strong> Tenda de Umbanda</p>
@@ -603,7 +619,7 @@
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin-bottom: 30px;">
             <article>
-                <h3>🌿 O que é Umbanda?</h3>
+                <h3>🏹 O que é Umbanda?</h3>
                 <p>A Umbanda é uma religião brasileira que sincretiza elementos africanos, indígenas e católicos, focada na caridade e na evolução espiritual. É uma fé viva que valoriza a conexão com a natureza e as energias espirituais.</p>
             </article>
             
@@ -626,7 +642,7 @@
     </section>
 
     <footer>
-        <p>🌿 <strong>Tenda de Umbanda Pai Oxalá - Caboclo Pena Roxa</strong> 🌿</p>
+        <p>🏹 <strong>Tenda de Umbanda Pai Oxalá - Caboclo Pena Roxa</strong> 🏹</p>
         <p>📍 Araraquara / SP | 📧 [Insira email] | 📞 [Insira telefone]</p>
         <p style="margin-top: 15px; font-size: 0.9em; color: #888;">
             Desenvolvido com amor e luz ✨ | Integração com Google Drive para mídias espirituais
@@ -650,7 +666,7 @@
     
     // Frases de reflexão dinâmicas com rotação automática
     const reflections = [
-        "🌿 A luz espiritual ilumina o caminho de todos que buscam a verdade.",
+        "🏹 A luz espiritual ilumina o caminho de todos que buscam a verdade.",
         "✨ Na Umbanda, encontramos paz, orientação e amor incondicional.",
         "🌸 A caridade é o maior portal para a evolução espiritual.",
         "🙏 Que Oxalá abençoe sua jornada com paz e sabedoria.",
