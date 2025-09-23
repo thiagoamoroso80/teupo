@@ -46,7 +46,7 @@
             align-items: center;
             max-width: 60%;
             min-width: 0;
-            margin-left: 43px;
+            margin-left: 45px;
             position: relative;
         }
         
@@ -56,8 +56,6 @@
             text-shadow: 1px 1px 2px rgba(44, 85, 48, 0.2);
             font-weight: 700;
             white-space: nowrap; /* Desktop: não quebra */
-            overflow: hidden;
-            text-overflow: ellipsis;
             width: 100%;
             text-align: left;
             line-height: 1.2;
@@ -68,7 +66,7 @@
         /* ÍCONE CABOCLO - Arco e Flecha */
         .title-icon {
             position: absolute;
-            left: 25px;
+            left: 35px;
             top: 50%;
             transform: translateY(-50%);
             font-size: clamp(1.4em, 3vw, 1.8em);
@@ -397,13 +395,13 @@
         @media (max-width: 768px) {
             .header-unified {
                 padding: 12px 15px;
-                height: 90px; /* Aumentado para acomodar título em 2 linhas */
+                height: 95px; /* Aumentado para acomodar título em 2 linhas */
                 background: linear-gradient(135deg, #E8F5E8 0%, #B2D8B2 100%);
             }
             
             .header-title {
-                max-width: 65%; /* Reduzido para evitar compressão excessiva */
-                margin-left: 40px;
+                max-width: 68%; /* Aumentado para evitar corte */
+                margin-left: 50px;
                 align-items: center;
                 display: flex;
                 flex-direction: column;
@@ -414,9 +412,10 @@
                 display: flex;
                 flex-direction: column;
                 white-space: normal;
-                font-size: clamp(0.9em, 3.5vw, 1.1em); /* Tamanho reduzido para caber */
+                font-size: clamp(0.95em, 3.8vw, 1.15em); /* Ajustado para legibilidade */
                 line-height: 1.4;
                 text-align: left;
+                overflow: visible; /* Evita corte do texto */
             }
             
             .header-title h1 span:first-child {
@@ -428,7 +427,7 @@
             }
             
             .title-icon {
-                left: 20px;
+                left: 18px; /* Ajustado para evitar sobreposição */
                 top: 50%;
                 transform: translateY(-50%);
                 font-size: clamp(1.2em, 3.5vw, 1.5em);
@@ -445,7 +444,7 @@
             }
             
             .main-content {
-                padding-top: 110px;
+                padding-top: 115px; /* Ajustado para evitar sobreposição */
             }
             
             section {
@@ -470,18 +469,19 @@
         
         @media (max-width: 480px) {
             .header-unified {
-                height: 85px;
+                height: 90px;
                 padding: 10px 12px;
             }
             
             .header-title {
-                max-width: 60%; /* Ajustado para telas menores */
-                margin-left: 40px;
+                max-width: 63%; /* Aumentado para evitar corte */
+                margin-left: 45px;
             }
             
             .header-title h1 {
-                font-size: clamp(0.8em, 4vw, 1.0em); /* Tamanho ainda menor */
+                font-size: clamp(0.85em, 4.2vw, 1.05em); /* Ajustado para telas menores */
                 line-height: 1.5;
+                overflow: visible; /* Evita corte do texto */
             }
             
             .header-title h1 span:first-child {
@@ -489,7 +489,7 @@
             }
             
             .title-icon {
-                left: 18px;
+                left: 16px; /* Ajustado para telas menores */
                 font-size: clamp(1.1em, 4vw, 1.4em);
             }
             
@@ -500,7 +500,7 @@
             }
             
             .main-content {
-                padding-top: 105px;
+                padding-top: 110px;
             }
         }
         
