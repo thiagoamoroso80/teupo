@@ -68,7 +68,7 @@
         /* ÍCONE CABOCLO - Arco e Flecha */
         .title-icon {
             position: absolute;
-            left: 25px;
+            left: 35px;
             top: 50%;
             transform: translateY(-50%);
             font-size: clamp(1.4em, 3vw, 1.8em);
@@ -402,11 +402,11 @@
             }
             
             .header-title {
-                max-width: 70%;
+                max-width: 65%; /* Reduzido para evitar compressão excessiva */
                 margin-left: 50px;
                 align-items: center;
                 display: flex;
-                flex-direction: column; /* Empilha os spans verticalmente */
+                flex-direction: column;
                 justify-content: center;
             }
             
@@ -414,9 +414,13 @@
                 display: flex;
                 flex-direction: column;
                 white-space: normal;
-                font-size: clamp(1.0em, 4vw, 1.2em);
+                font-size: clamp(0.9em, 3.5vw, 1.1em); /* Tamanho reduzido para caber */
                 line-height: 1.4;
                 text-align: left;
+            }
+            
+            .header-title h1 span:first-child {
+                white-space: nowrap; /* Evita quebra em "Tenda de Umbanda Pai Oxalá" */
             }
             
             .header-title h1 span {
@@ -471,13 +475,17 @@
             }
             
             .header-title {
-                max-width: 65%;
+                max-width: 60%; /* Ajustado para telas menores */
                 margin-left: 45px;
             }
             
             .header-title h1 {
-                font-size: clamp(0.9em, 5vw, 1.1em);
+                font-size: clamp(0.8em, 4vw, 1.0em); /* Tamanho ainda menor */
                 line-height: 1.5;
+            }
+            
+            .header-title h1 span:first-child {
+                white-space: nowrap; /* Evita quebra em "Tenda de Umbanda Pai Oxalá" */
             }
             
             .title-icon {
@@ -568,8 +576,8 @@
                     <p><strong>🕐 Horário:</strong> Quintas-feiras às 19h</p>
                     <p><strong>🎭 Gira de Caboclo:</strong> Todas as quintas</p>
                     <p><strong>👴 Gira de Preto Velho:</strong> 2ª quinta do mês</p>
-                    <p><strong>🏠 Endereço:</strong> 
-                        Rua Sao Pedro, 77, Vila Santa Maria, Araraquara-SP</p>
+                    <p><strong>🏠 Endereço completo:</strong><br>
+                    [Insira o endereço completo aqui]</p>
                 </div>
             </div>
             <div style="text-align: center; background: linear-gradient(135deg, #B2D8B2 0%, #98D8A8 100%); padding: 25px; border-radius: 12px; margin-top: 30px; color: #2C5530;">
