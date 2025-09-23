@@ -68,7 +68,7 @@
         /* ÍCONE CABOCLO - Arco e Flecha */
         .title-icon {
             position: absolute;
-            left: 35px;
+            left: 25px;
             top: 50%;
             transform: translateY(-50%);
             font-size: clamp(1.4em, 3vw, 1.8em);
@@ -105,7 +105,7 @@
             border-radius: 50%;
             transition: all 0.3s ease;
             margin-left: 10px;
-            display: block; /* Sempre visível para garantir funcionalidade */
+            display: block; /* Sempre visível */
         }
         
         .mobile-menu-toggle:hover {
@@ -405,21 +405,22 @@
                 max-width: 70%;
                 margin-left: 50px;
                 align-items: center;
-            }
-            
-            .header-title h1::before {
-                content: "Tenda de Umbanda Pai Oxalá\nCaboclo Pena Roxa"; /* Quebra em 2 linhas */
-                display: block;
-                white-space: pre-wrap; /* Respeita quebras de linha */
-                word-wrap: break-word;
-                line-height: 1.4;
-                font-size: clamp(1.0em, 4vw, 1.2em);
-                text-align: left;
+                display: flex;
+                flex-direction: column; /* Empilha os spans verticalmente */
+                justify-content: center;
             }
             
             .header-title h1 {
-                font-size: 0; /* Esconde o texto original, usa ::before */
-                line-height: 0;
+                display: flex;
+                flex-direction: column;
+                white-space: normal;
+                font-size: clamp(1.0em, 4vw, 1.2em);
+                line-height: 1.4;
+                text-align: left;
+            }
+            
+            .header-title h1 span {
+                display: block; /* Cada span em uma linha */
             }
             
             .title-icon {
@@ -474,7 +475,7 @@
                 margin-left: 45px;
             }
             
-            .header-title h1::before {
+            .header-title h1 {
                 font-size: clamp(0.9em, 5vw, 1.1em);
                 line-height: 1.5;
             }
@@ -520,7 +521,10 @@
     <div class="header-unified">
         <div class="title-icon">🏹</div>
         <div class="header-title">
-            <h1>Tenda de Umbanda Pai Oxalá - Caboclo Pena Roxa</h1>
+            <h1>
+                <span>Tenda de Umbanda Pai Oxalá</span>
+                <span>Caboclo Pena Roxa</span>
+            </h1>
         </div>
         
         <div class="header-menu">
@@ -564,8 +568,8 @@
                     <p><strong>🕐 Horário:</strong> Quintas-feiras às 19h</p>
                     <p><strong>🎭 Gira de Caboclo:</strong> Todas as quintas</p>
                     <p><strong>👴 Gira de Preto Velho:</strong> 2ª quinta do mês</p>
-                    <p><strong>🏠 Endereço completo:</strong><br>
-                    [Insira o endereço completo aqui]</p>
+                    <p><strong>🏠 Endereço:</strong> 
+                        Rua Sao Pedro, 77, Vila Santa Maria, Araraquara-SP</p>
                 </div>
             </div>
             <div style="text-align: center; background: linear-gradient(135deg, #B2D8B2 0%, #98D8A8 100%); padding: 25px; border-radius: 12px; margin-top: 30px; color: #2C5530;">
