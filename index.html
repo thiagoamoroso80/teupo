@@ -256,13 +256,161 @@
             box-shadow: 0 6px 20px rgba(44, 85, 48, 0.15);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            background-color: #E8F5E8; /* Cor de fundo enquanto carrega */
+            min-height: 200px;
         }
         
         .gallery img:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(74, 124, 89, 0.25);
         }
+
+        .gallery img:active {
+            transform: scale(0.95);
+        }
         
+        /* Melhorar o placeholder para imagens quebradas */
+        .gallery img[src*="placeholder"] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4A7C59;
+            font-weight: bold;
+        }
+
+        /* LIGHTBOX / MODAL PARA IMAGENS - BORDA BRANCA FINA */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 85, 48, 0.7); /* Fundo mais transparente */
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            margin-top: 15vh;
+            max-width: 90%;
+            max-height: 70vh;
+            background: transparent; /* Fundo transparente no container */
+            border-radius: 8px;
+            animation: zoomIn 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox-img-container {
+            position: relative;
+            background: white; /* Borda branca através do padding */
+            padding: 15px; /* ESPESSURA DA BORDA BRANCA - ajuste aqui */
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-img {
+            width: auto;
+            height: auto;
+            max-width: calc(100vw - 100px); /* Ajuste para telas grandes */
+            max-height: calc(70vh - 80px);
+            object-fit: contain;
+            border-radius: 6px;
+            display: block;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            color: #2C5530;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #E8F5E8;
+            transition: all 0.3s ease;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-lightbox:hover {
+            background: #E8F5E8;
+            color: #2C5530;
+            transform: rotate(90deg);
+            border-color: #B2D8B2;
+        }
+
+        .image-caption {
+            color: white; /* Mudei para branco para contrastar com o fundo escuro */
+            text-align: center;
+            padding: 15px 0 5px 0;
+            font-size: 1.1em;
+            font-weight: 600;
+            width: 100%;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Botões de navegação */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .nav-btn {
+            background: white;
+            color: #2C5530;
+            border: 2px solid #E8F5E8;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            pointer-events: all;
+        }
+
+        .nav-btn:hover {
+            background: #E8F5E8;
+            transform: scale(1.1);
+            border-color: #B2D8B2;
+        }
+
         .library {
             background: linear-gradient(135deg, #F0F8F0 0%, #E8F5E8 100%);
             padding: 25px;
@@ -467,6 +615,45 @@
                 padding: 15px;
                 margin: 20px 0; /* Ajustado para mobile */
             }
+
+            /* Ajustes do lightbox para mobile */
+            .lightbox-content {
+                margin-top: 20vh;
+                max-width: 95%;
+                max-height: 60vh;
+            }
+
+            .lightbox-img-container {
+                padding: 12px; /* Borda menor em mobile */
+            }
+
+            .lightbox-img {
+                max-width: calc(100vw - 80px);
+                max-height: calc(60vh - 60px);
+            }
+
+            .close-lightbox {
+                 top: -12px;
+                right: -12px;
+                width: 35px;
+                height: 35px;
+                font-size: 22px;
+            }
+
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .lightbox-nav {
+                padding: 0 10px;
+            }
+
+            .image-caption {
+                font-size: 1em;
+                padding: 12px 0 3px 0;
+            }
         }
         
         @media (max-width: 480px) {
@@ -504,6 +691,41 @@
             
             .main-content {
                 padding-top: 110px;
+            }
+
+            /* Ajustes do lightbox para mobile pequeno */
+            .lightbox-content {
+                margin-top: 25vh;
+                max-width: 98%;
+                max-height: 50vh;
+            }
+
+             .lightbox-img-container {
+                padding: 10px; /* Borda ainda menor em mobile pequeno */
+            }
+            
+            .lightbox-img {
+                 max-width: calc(100vw - 60px);
+                max-height: calc(50vh - 50px);
+            }
+            
+            .close-lightbox {
+                 top: -10px;
+                right: -10px;
+                width: 30px;
+                height: 30px;
+                font-size: 18px;
+            }
+            
+            .nav-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .image-caption {
+                font-size: 0.9em;
+                padding: 10px 0 2px 0;
             }
         }
         
@@ -584,16 +806,11 @@
                     Rua São Pedro, 77 - Vila Santa Maria</p>
                 </div>
             </div>
-            <!--<div style="text-align: center; background: linear-gradient(135deg, #B2D8B2 0%, #98D8A8 100%); padding: 25px; border-radius: 12px; margin-top: 30px; color: #2C5530;">
-                <h3>🌟 Nossa Missão</h3>
-                <p><em>"Fundado com o propósito de auxiliar no caminho espiritual, o Centro conta com a participação e sustentação do <strong>Lar Otoniel de Camargo</strong> e da <strong>Associação Cultural Ary Luis Bombarda</strong>, também localizados em Araraquara/SP."</em></p>
-                <p>Nossa missão é disseminar os ensinamentos da Umbanda, promovendo harmonia, cura espiritual e desenvolvimento pessoal através do amor e da caridade.</p>
-            </div> -->
             <div style="text-align: center; background: linear-gradient(135deg, #B2D8B2 0%, #98D8A8 100%); padding: 25px; border-radius: 12px; margin-top: 30px; color: #2C5530;">
                 <h3>🌟 Nossa Missão</h3>
                 <p><em>"A <strong>Tenda de Umbanda Pai Oxalá Caboclo Pena Roxa</strong> foi fundada com o propósito de auxiliar no caminho espiritual, oferecendo amparo, orientação e luz àqueles que buscam equilíbrio e evolução."</em></p>
                 
-                <p>Com o passar do tempo, sob a orientação do <strong>Guia Espiritual “Tô”</strong>, Chefe da Linha dos Boiadeiros da Casa, foi determinado que se trabalhasse para construir um local destinado à <em>“matéria cansada”</em> — pessoas idosas que necessitavam de acolhimento e cuidado.</p>
+                <p>Com o passar do tempo, sob a orientação do <strong>Guia Espiritual "Tô"</strong>, Chefe da Linha dos Boiadeiros da Casa, foi determinado que se trabalhasse para construir um local destinado à <em>"matéria cansada"</em> — pessoas idosas que necessitavam de acolhimento e cuidado.</p>
                 
                 <p>Dessa determinação nasceu o <strong>Lar e Internato Otoniel de Camargo</strong>, localizado na <strong>Avenida Gutenberg, 553 – Vila Xavier – Araraquara/SP</strong>, instituição que acolhe idosos em regime de internato.<br>
                 📅 <strong>Fundação:</strong> 17 de março de 1983<br>
@@ -612,10 +829,10 @@
             <h2>📸 Galeria de Fotos</h2>
             <p style="text-align: center; margin-bottom: 30px; color: #4A7C59;">Momentos de luz, trabalho espiritual e fraternidade</p>
             <div class="gallery">
-                <img src="https://drive.google.com/uc?id=1Tj9OpU7_7GeB8hH1BKnNMfxQj_i2ORRa" alt="Bem Vindo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
-                <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_2" alt="Trabalho espiritual" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
-                <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_3" alt="Momento de fraternidade" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
-                <img src="https://drive.google.com/uc?id=INSIRA_ID_IMAGEM_4" alt="Ambiente sagrado" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRTBGN0UwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5hbyBDYXJsaW5nby4uLjwvdGV4dD48L3N2Zz4='" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=1Tj9OpU7_7GeB8hH1BKnNMfxQj_i2ORRa&sz=w1000" alt="Bem Vindo - Entrada da Tenda" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=1TysJ-uflAsBzBUX3CO_NguGZZMMxMmuo&sz=w1000" alt="Congá" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=INSIRA_ID_IMAGEM_3&sz=w1000" alt="Momento de fraternidade - Confraternização" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=INSIRA_ID_IMAGEM_4&sz=w1000" alt="Ambiente sagrado - Altar principal" loading="lazy">
             </div>
         </section>
 
@@ -643,8 +860,7 @@
                     <p><strong>Data:</strong> Todas as quintas-feiras<br>
                     <strong>Horário:</strong> 20h<br>
                     <strong>Local:</strong> Tenda de Umbanda</p>
-                    <!--<img src="https://drive.google.com/uc?id=INSIRA_ID_CARTAZ_GIRA" alt="Cartaz Gira de Caboclo" onerror="this.style.display='none'" style="height: 180px;">-->
-                    <img src="https://via.placeholder.com/300x180.png?text=Gira+de+Caboclo" alt="Cartaz Gira de Caboclo" style="height: 180px;">
+                    <img src="https://drive.google.com/uc?id=INSIRA_ID_CARTAZ_GIRA" alt="Cartaz Gira de Caboclo" onerror="this.style.display='none'" style="height: 180px;">
                 </div>
                 <div class="event">
                     <h3>👴 Gira de Preto Velho - Evento Mensal</h3>
@@ -726,6 +942,21 @@
         </footer>
     </div>
 
+    <!-- LIGHTBOX PARA IMAGENS -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-nav">
+            <button class="nav-btn prev-btn">&#10094;</button>
+            <button class="nav-btn next-btn">&#10095;</button>
+        </div>
+        <div class="lightbox-content">
+            <div class="lightbox-img-container">
+                <img class="lightbox-img" src="" alt="">
+            </div>
+            <div class="image-caption"></div>
+        </div>
+    </div>
+
     <script>
         // Função para toggle do menu hambúrguer
         function toggleMobileMenu() {
@@ -779,6 +1010,132 @@
                 currentIndex = (currentIndex + 1) % reflections.length;
             }, 250);
         }
+
+        // Adicione esta função para melhor carregamento de imagens
+        function preloadImages() {
+            const images = document.querySelectorAll('img[src*="drive.google.com"]');
+            
+            images.forEach(img => {
+                // Adiciona um loader enquanto a imagem carrega
+                img.style.background = '#E8F5E8';
+                img.style.display = 'flex';
+                img.style.alignItems = 'center';
+                img.style.justifyContent = 'center';
+                img.style.color = '#4A7C59';
+                img.style.fontSize = '14px';
+                
+                img.onload = function() {
+                    this.style.background = 'none';
+                };
+                
+                img.onerror = function() {
+                    this.style.background = '#E8F5E8';
+                    console.log('Erro ao carregar imagem:', this.alt);
+                };
+            });
+        }
+
+        // LIGHTBOX PARA IMAGENS
+        let currentImageIndex = 0;
+        let images = [];
+
+        function initLightbox() {
+            images = Array.from(document.querySelectorAll('.gallery img'));
+            
+            // Adiciona evento de clique para cada imagem
+            images.forEach((img, index) => {
+                img.addEventListener('click', () => openLightbox(index));
+            });
+            
+            // Eventos do lightbox
+            const lightbox = document.getElementById('lightbox');
+            const closeBtn = document.querySelector('.close-lightbox');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            closeBtn.addEventListener('click', closeLightbox);
+            prevBtn.addEventListener('click', showPrevImage);
+            nextBtn.addEventListener('click', showNextImage);
+            
+            // Fechar com ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showPrevImage();
+                if (e.key === 'ArrowRight') showNextImage();
+            });
+            
+            // Fechar ao clicar fora da imagem
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+        }
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.querySelector('.lightbox-img');
+            const caption = document.querySelector('.image-caption');
+            
+            lightbox.style.display = 'block';
+            lightboxImg.src = images[currentImageIndex].src;
+            caption.textContent = images[currentImageIndex].alt;
+            
+            // Previne scroll do body quando lightbox está aberto
+            document.body.style.overflow = 'hidden';
+            
+            // Atualiza visibilidade dos botões de navegação
+            updateNavButtons();
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateLightboxImage();
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const lightboxImg = document.querySelector('.lightbox-img');
+            const caption = document.querySelector('.image-caption');
+            
+            // Efeito de fade out/in
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImg.src = images[currentImageIndex].src;
+                caption.textContent = images[currentImageIndex].alt;
+                lightboxImg.style.opacity = '1';
+                updateNavButtons();
+            }, 200);
+        }
+
+        function updateNavButtons() {
+            // Esta função pode ser usada para esconder botões se necessário
+            // Por exemplo, esconder prev na primeira imagem e next na última
+        }
+
+        // Inicializa o lightbox quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            preloadImages();
+            initLightbox();
+            
+            const images = document.querySelectorAll('.gallery img, .event img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+            });
+        });
         
         // Inicializa a primeira frase
         reflectionText.innerHTML = `<em>${reflections[0]}</em>`;
@@ -799,18 +1156,6 @@
                         behavior: 'smooth'
                     });
                 }
-            });
-        });
-        
-        // Efeito de loading para imagens
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('.gallery img, .event img');
-            images.forEach(img => {
-                img.addEventListener('load', function() {
-                    this.style.opacity = '1';
-                });
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
             });
         });
         
