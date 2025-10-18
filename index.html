@@ -287,7 +287,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(44, 85, 48, 0.7); /* Fundo mais transparente */
+            background-color: rgba(44, 85, 48, 0.85); /* Fundo mais transparente */
             backdrop-filter: blur(5px);
             animation: fadeIn 0.3s ease;
         }
@@ -338,17 +338,18 @@
             display: block;
         }
 
+        /* BOTÃO FECHAR - Canto superior direito da imagem */
         .close-lightbox {
             position: absolute;
-            top: -15px;
-            right: -15px;
+            top: -10px;
+            right: -10px;
             color: #2C5530;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             cursor: pointer;
             background: white;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -356,7 +357,7 @@
             border: 2px solid #E8F5E8;
             transition: all 0.3s ease;
             z-index: 10000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .close-lightbox:hover {
@@ -366,13 +367,24 @@
             border-color: #B2D8B2;
         }
 
+        /* CONTAINER DA LEGENDA E BOTÕES DE NAVEGAÇÃO */
+        .lightbox-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 15px;
+            position: relative;
+            padding: 0 10px; /* Reduzido o padding geral */
+        }
+
         .image-caption {
-            color: white; /* Mudei para branco para contrastar com o fundo escuro */
+            color: white;
             text-align: center;
-            padding: 15px 0 5px 0;
             font-size: 1.1em;
             font-weight: 600;
-            width: 100%;
+            flex: 1;
+            padding: 0 20px; /* Espaço para os botões */
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
@@ -388,26 +400,37 @@
             pointer-events: none;
         }
 
+        /* BOTÕES DE NAVEGAÇÃO - Lados da legenda */
         .nav-btn {
             background: white;
             color: #2C5530;
             border: 2px solid #E8F5E8;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            pointer-events: all;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .prev-btn {
+            left: 10px; /* POSICIONADO mais perto */
+        }
+
+        .next-btn {
+            right: 10px; /* POSICIONADO mais perto */
         }
 
         .nav-btn:hover {
             background: #E8F5E8;
-            transform: scale(1.1);
+            transform: translateY(-50%) scale(1.1);
             border-color: #B2D8B2;
         }
 
@@ -633,26 +656,39 @@
             }
 
             .close-lightbox {
-                 top: -12px;
-                right: -12px;
-                width: 35px;
-                height: 35px;
-                font-size: 22px;
+                top: -8px;
+                right: -8px;
+                width: 32px;
+                height: 32px;
+                font-size: 20px;
+            }
+
+            .lightbox-footer {
+                margin-top: 12px;
+                padding: 0 8px;
+            }
+
+            .image-caption {
+                font-size: 1em;
+                padding: 0 15px;
             }
 
             .nav-btn {
                 width: 40px;
                 height: 40px;
-                font-size: 20px;
+                font-size: 18px;
+            }
+
+            .prev-btn {
+                left: 8px;
+            }
+            
+            .next-btn {
+                right: 8px;
             }
 
             .lightbox-nav {
                 padding: 0 10px;
-            }
-
-            .image-caption {
-                font-size: 1em;
-                padding: 12px 0 3px 0;
             }
         }
         
@@ -710,11 +746,16 @@
             }
             
             .close-lightbox {
-                 top: -10px;
-                right: -10px;
-                width: 30px;
-                height: 30px;
-                font-size: 18px;
+                top: -6px;
+                right: -6px;
+                width: 28px;
+                height: 28px;
+                font-size: 16px;
+            }
+
+            .lightbox-footer {
+                margin-top: 10px;
+                padding: 0 5px;
             }
             
             .nav-btn {
@@ -725,7 +766,15 @@
             
             .image-caption {
                 font-size: 0.9em;
-                padding: 10px 0 2px 0;
+                padding: 0 12px;
+            }
+
+             .prev-btn {
+                left: 5px;
+            }
+            
+            .next-btn {
+                right: 5px;
             }
         }
         
@@ -944,16 +993,16 @@
 
     <!-- LIGHTBOX PARA IMAGENS -->
     <div id="lightbox" class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <div class="lightbox-nav">
-            <button class="nav-btn prev-btn">&#10094;</button>
-            <button class="nav-btn next-btn">&#10095;</button>
-        </div>
         <div class="lightbox-content">
             <div class="lightbox-img-container">
+                <span class="close-lightbox">&times;</span>
                 <img class="lightbox-img" src="" alt="">
             </div>
-            <div class="image-caption"></div>
+            <div class="lightbox-footer">
+                <button class="nav-btn prev-btn">&#10094;</button>
+                <div class="image-caption"></div>
+                <button class="nav-btn next-btn">&#10095;</button>
+            </div>
         </div>
     </div>
 
