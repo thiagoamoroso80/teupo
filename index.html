@@ -451,13 +451,80 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 6px rgba(44, 85, 48, 0.08);
         }
+
+        .library li a {
+            display: inline-block;
+            margin: 0 6px;
+            padding: 4px 10px;
+            background: rgba(178, 216, 178, 0.3);
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #2C5530;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid #B2D8B2;
+        }
+
+        .library li a:hover {
+            background: #B2D8B2;
+            color: #1a3d1e;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(44, 85, 48, 0.15);
+        }
+
+        .library-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 8px 0;
+        }
+
+        .library-title {
+            flex: 1;
+            min-width: 200px;
+            font-size: 1em;
+            color: #2C5530;
+        }
+
+        .partes {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .partes a {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(178, 216, 178, 0.3);
+            color: #2C5530;
+            font-weight: 600;
+            font-size: 0.85em;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #B2D8B2;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .partes a:hover {
+            background: #B2D8B2;
+            color: #1a3d1e;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(44, 85, 48, 0.2);
+        }
         
+        /*
         .library li:hover {
             background: linear-gradient(135deg, #F0F8F0 0%, #E8F5E8 100%);
             transform: translateX(5px);
             box-shadow: 0 4px 12px rgba(74, 124, 89, 0.15);
             border-left-color: #B2D8B2;
-        }
+        }*/
+
         
         .library a {
             color: #4A7C59;
@@ -675,6 +742,18 @@
                 font-size: 16px;
             }
         }
+
+        /* Responsividade: em telas pequenas, empilha título e botões */
+        @media (max-width: 600px) {
+            .library-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .partes {
+                justify-content: flex-start;
+                width: 100%;
+            }
+        }
         
         @media (max-width: 480px) {
             .header-unified {
@@ -872,12 +951,104 @@
             <p style="text-align: center; margin-bottom: 25px; color: #4A7C59;">Acervo de materiais para consulta e estudo espiritual</p>
             <div class="library">
                 <ul>
-                    <li><a href="https://drive.google.com/uc?id=INSIRA_ID_LIVRO_PDF&export=download" target="_blank">📖 Fundamentos da Umbanda - Livro Completo</a></li>
-                    <li><a href="https://drive.google.com/uc?id=INSIRA_ID_APOSTILA&export=download" target="_blank">📝 Apostila de Linhas de Trabalho</a></li>
-                    <li><a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIO&export=download" target="_blank">🎵 Áudio: Meditação com Caboclo Pena Roxa</a></li>
-                    <li><a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIOBOOK&export=download" target="_blank">🎧 Audiobook: Sabedoria dos Pretos Velhos</a></li>
-                    <li><a href="https://drive.google.com/uc?id=INSIRA_ID_PDF_2&export=download" target="_blank">📄 Hinos e Pontos Cantados</a></li>
-                    <li><a href="https://drive.google.com/uc?id=INSIRA_ID_MEDITACAO&export=download" target="_blank">🧘‍♀️ Guia de Meditação Guiada</a></li>
+                    <li>
+                        <!-- Audiobook - O Livro dos Espíritos -->
+                        <div class="library-item">
+                            <span class="library-title">🎧 <strong>Audiobook</strong> - O Livro dos Espíritos</span>
+                            <span class="partes">
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_AL_Parte1.zip" target="_blank">Parte 1</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                                <!-- Adicione mais partes aqui -->
+                            </span>
+                        </div>
+                    </li>
+                    <!-- Audiobook - O Livro dos Espíritos -->
+                    <li>
+                        🎧 <strong>Audiobook</strong> - O Livro dos Espíritos
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                    </li>
+                    <!-- Audiobook - O Livro dos Médiuns -->
+                    <li>
+                        🎧 <strong>Audiobook</strong> - O Livro dos Médiuns
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                    </li>
+                    <!-- Audiobook - O Evangelho Segundo o Espiritismo -->
+                    <li>
+                        🎧 <strong>Audiobook</strong> - O Evangelho Segundo o Espiritismo
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                    </li>
+                    <!-- Audiobook - O Céu e o Inferno -->
+                    <li>
+                        🎧 <strong>Audiobook</strong> - O Céu e o Inferno
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                    </li>
+                    <!-- Audiobook - A Gênese -->
+                    <li>
+                        🎧 <strong>Audiobook</strong> - A Gênese
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                    </li>
+                    <!-- Testes
+                    <!-- Exemplo 1: Livro com várias partes 
+                    <li>
+                        📖 <strong>Livro</strong> - Fundamentos da Umbanda 
+                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_AL_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                        <!-- Adicione mais partes aqui se existirem 
+                    </li>
+
+                    <!-- Exemplo 2: Apostila (apenas uma parte) 
+                    <li>
+                        📝 <strong>Apostila</strong> - Linhas de Trabalho 
+                        <a href="https://drive.google.com/uc?id=INSIRA_ID_APOSTILA&export=download" target="_blank" title="Baixar apostila">Download</a>
+                    </li>
+
+                    <!-- Exemplo 3: Áudio com várias partes 
+                    <li>
+                        🎵 <strong>Áudio</strong> - Meditação com Caboclo Pena Roxa 
+                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIO_PARTE1&export=download" target="_blank" title="Parte 1">Parte 1</a>
+                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIO_PARTE2&export=download" target="_blank" title="Parte 2">Parte 2</a>
+                    </li>
+
+                    <!-- Exemplo 4: Audiobook com várias partes 
+                    <li>
+                        🎧 <strong>Audiobook</strong> - Sabedoria dos Pretos Velhos 
+                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIOBOOK_P1&export=download" target="_blank" title="Parte 1">Parte 1</a>
+                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIOBOOK_P2&export=download" target="_blank" title="Parte 2">Parte 2</a>
+                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIOBOOK_P3&export=download" target="_blank" title="Parte 3">Parte 3</a>
+                    </li>
+
+                    <!-- Exemplo 5: PDF único 
+                    <li>
+                        📄 <strong>PDF</strong> - Hinos e Pontos Cantados 
+                        <a href="https://drive.google.com/uc?id=INSIRA_ID_PDF_2&export=download" target="_blank" title="Baixar PDF">Download</a>
+                    </li>
+
+                    <!-- Exemplo 6: Guia de Meditação (único) 
+                    <li>
+                        🧘‍♀️ <strong>Guia</strong> - Meditação Guiada 
+                        <a href="https://drive.google.com/uc?id=INSIRA_ID_MEDITACAO&export=download" target="_blank" title="Baixar guia">Download</a>
+                    </li>-->
                 </ul>
             </div>
         </section>
