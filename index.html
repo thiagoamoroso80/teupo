@@ -474,26 +474,26 @@
         }
 
         .library-item {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* título flexível | botões fixos */
             align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
+            gap: 50px;
             padding: 8px 0;
         }
 
         .library-title {
-            flex: 1;
-            min-width: 200px;
             font-size: 1em;
             color: #2C5530;
+            min-width: 0; /* Permite quebra de texto longo */
         }
 
+        /* BLOCO DE PARTES: alinhado à direita, mas com início fixo */
         .partes {
             display: flex;
             gap: 8px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+            justify-content: flex-start; /* Alinha botões à direita */
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
 
         .partes a {
@@ -507,7 +507,6 @@
             border-radius: 6px;
             border: 1px solid #B2D8B2;
             transition: all 0.2s ease;
-            white-space: nowrap;
         }
 
         .partes a:hover {
@@ -516,16 +515,7 @@
             transform: translateY(-1px);
             box-shadow: 0 3px 8px rgba(44, 85, 48, 0.2);
         }
-        
-        /*
-        .library li:hover {
-            background: linear-gradient(135deg, #F0F8F0 0%, #E8F5E8 100%);
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.15);
-            border-left-color: #B2D8B2;
-        }*/
-
-        
+               
         .library a {
             color: #4A7C59;
             text-decoration: none;
@@ -633,7 +623,7 @@
             }
             
             .header-title {
-                max-width: 55%; /* Reduzido de 68% para evitar sobreposição com o menu */
+                max-width: 70%; /* Reduzido de 68% para evitar sobreposição com o menu */
                 margin-left: 50px;
                 margin-right: 50px; /* Adicionado para espaço à direita */  
                 align-items: center;
@@ -653,11 +643,11 @@
             }
             
             .header-title h1 span:first-child {
-                white-space: nowrap; /* Evita quebra em "Tenda de Umbanda Pai Oxalá" */
+                white-space: wrap; /* Evita quebra em "Tenda de Umbanda Pai Oxalá" */
             }
             
             .header-title h1 span {
-                display: block; /* Cada span em uma linha */
+                display: inline; /* Cada span em uma linha */
             }
             
             .title-icon {
@@ -746,25 +736,27 @@
         /* Responsividade: em telas pequenas, empilha título e botões */
         @media (max-width: 600px) {
             .library-item {
-                flex-direction: column;
-                align-items: flex-start;
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
             .partes {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
                 justify-content: flex-start;
-                width: 100%;
             }
         }
         
         @media (max-width: 480px) {
             .header-unified {
                 height: 90px;
-                padding: 10px 12px;
+                justify-content: space-around;
+                padding: 8px;
             }
             
             .header-title {
-                max-width: 55%; /* Reduzido de 63% para evitar sobreposição */
+                /*max-width: 55%; /* Reduzido de 63% para evitar sobreposição */
                 margin-left: 45px;
-                margin-right: 45px; /* Adicionado para espaço à direita */
+                margin-right: 5px; /* Adicionado para espaço à direita */
             }
             
             .header-title h1 {
@@ -860,8 +852,7 @@
         <div class="title-icon">🏹</div>
         <div class="header-title">
             <h1>
-                <span>Tenda Espírita de Umbanda Pai Oxalá</span>
-                <span>Caboclo Pena Roxa</span>
+            Tenda Espírita de Umbanda Pai Oxalá Caboclo Pena Roxa
             </h1>
         </div>
         
@@ -956,7 +947,6 @@
                         <div class="library-item">
                             <span class="library-title">🎧 <strong>Audiobook</strong> - O Livro dos Espíritos</span>
                             <span class="partes">
-                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_AL_Parte1.zip" target="_blank">Parte 1</a>
                                 <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
                                 <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
                                 <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
@@ -966,49 +956,61 @@
                             </span>
                         </div>
                     </li>
-                    <!-- Audiobook - O Livro dos Espíritos -->
+                    
                     <li>
-                        🎧 <strong>Audiobook</strong> - O Livro dos Espíritos
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                        <!-- Audiobook - O Livro dos Médiuns -->
+                        <div class="library-item">
+                            <span class="library-title">🎧 <strong>Audiobook</strong> - O Livro dos Médiuns</span>
+                            <span class="partes">
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                            </span>
+                        </div>
                     </li>
-                    <!-- Audiobook - O Livro dos Médiuns -->
+
                     <li>
-                        🎧 <strong>Audiobook</strong> - O Livro dos Médiuns
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LM_LF_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                        <!-- Audiobook - O Evangelho Segundo o Espiritismo -->
+                        <div class="library-item">
+                            <span class="library-title">🎧 <strong>Audiobook</strong> - O Evangelho Segundo o Espiritismo</span>
+                            <span class="partes">
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                            </span>
+                        </div>
                     </li>
-                    <!-- Audiobook - O Evangelho Segundo o Espiritismo -->
+
                     <li>
-                        🎧 <strong>Audiobook</strong> - O Evangelho Segundo o Espiritismo
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/ESE_PANDEIA_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
+                        <!-- Audiobook - O Céu e o Inferno -->
+                        <div class="library-item">
+                            <span class="library-title">🎧 <strong>Audiobook</strong> - O Céu e o Inferno</span>
+                            <span class="partes">
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                            </span>
+                        </div>
                     </li>
-                    <!-- Audiobook - O Céu e o Inferno -->
+                    
                     <li>
-                        🎧 <strong>Audiobook</strong> - O Céu e o Inferno
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/CI_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                        <!-- Audiobook - A Gênese -->
+                        <div class="library-item">
+                            <span class="library-title">🎧 <strong>Audiobook</strong> - A Gênese</span>
+                            <span class="partes">
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
+                                <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
+                            </span>
+                        </div>
                     </li>
-                    <!-- Audiobook - A Gênese -->
-                    <li>
-                        🎧 <strong>Audiobook</strong> - A Gênese
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte2.zip" target="_blank" title="Parte 2">Parte 2</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/AG_LF_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
-                    </li>
+
                     <!-- Testes
                     <!-- Exemplo 1: Livro com várias partes 
                     <li>
