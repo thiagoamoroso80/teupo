@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tenda Espírita de Umbanda Pai Oxalá - Caboclo Pena Roxa</title>
+    
+    <!-- Meta Tags SEO -->
+    <meta name="description" content="Tenda Espírita de Umbanda Pai Oxalá - Caboclo Pena Roxa. Atendimentos espirituais, giras de Caboclo e Preto Velho em Araraquara/SP">
+    <meta name="keywords" content="umbanda, tenda espírita, caboclo pena roxa, pai oxalá, araraquara, gira espiritual, centro espiritual">
+    <meta name="author" content="Tenda Espírita de Umbanda Pai Oxalá">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tenda Espírita de Umbanda Pai Oxalá - Caboclo Pena Roxa">
+    <meta property="og:description" content="Espaço sagrado dedicado à prática espiritual da Umbanda em Araraquara/SP">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tendaumbandapaioxala.com.br">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏹</text></svg>">
+    
     <style>
         /* Paleta VERDE DAS MATAS: verde claro (#E8F5E8), verde floresta (#B2D8B2), verde musgo (#98D8A8) */
         * {
@@ -177,19 +192,14 @@
         }
         
         #home {
-            /*background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 50%, #FFFFFF 100%);*/
             text-align: center;
         }
         
         .reflection {
             font-style: italic;
             font-size: 1.3em;
-            /*margin: 30px 0;*/
-            /*color: #4A7C59;*/
             background-color: rgba(232, 245, 232, 0.9);
-            /*padding: 20px;*/
             border-radius: 10px;
-            /*border-left: 4px solid #B2D8B2;*/
             box-shadow: 0 2px 8px rgba(44, 85, 48, 0.08);
         }
         
@@ -559,7 +569,7 @@
             margin-bottom: 15px;
             box-shadow: 0 2px 8px rgba(44, 85, 48, 0.1);
         }
-        
+       
         .event h3 {
             margin-bottom: 10px;
             color: #2C5530;
@@ -731,6 +741,16 @@
                 height: 36px;
                 font-size: 16px;
             }
+
+            /* Ajustes para o modal do mapa em mobile */
+            .map-container {
+                max-width: 95vw !important;
+                max-height: 50vh !important;
+            }
+            
+            .map-iframe {
+                height: 300px !important;
+            }
         }
 
         /* Responsividade: em telas pequenas, empilha título e botões */
@@ -754,7 +774,6 @@
             }
             
             .header-title {
-                /*max-width: 55%; /* Reduzido de 63% para evitar sobreposição */
                 margin-left: 45px;
                 margin-right: 5px; /* Adicionado para espaço à direita */
             }
@@ -844,6 +863,88 @@
                 transform: translateY(0);
             }
         }
+
+        /* NOVOS ESTILOS ADICIONADOS */
+        
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4A7C59;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Estados de foco para acessibilidade */
+        a:focus, button:focus {
+            outline: 2px solid #4A7C59;
+            outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+            .header-unified, .mobile-menu-toggle, footer {
+                display: none !important;
+            }
+            
+            .main-content {
+                padding-top: 0;
+            }
+        }
+
+        /* Otimização de imagens */
+        img {
+            content-visibility: auto;
+        }
+
+        /* ESTILOS ESPECÍFICOS PARA O MODAL DO MAPA */
+        .map-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            max-height: 600px;
+            width: 90vw;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+            flex: 1;
+        }
+
+        .map-title {
+            text-align: center;
+            color: #2C5530;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .map-link {
+            cursor: pointer;
+            color: #4A7C59;
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .map-link:hover {
+            color: #2C5530;
+        }
     </style>
 </head>
 <body>
@@ -879,17 +980,14 @@
                 <h3>🏹 Atendimento</h3>
                 <p><strong>🎭 Gira de Caboclo:</strong> Todas as quintas-feiras com início às 20h (abertura do portão às 19h e fechamento às 19h45)</p>
                 <p><strong>👴 Gira de Preto Velho:</strong> Na 2ª. quinta-feira do mês com início às 20h (abertura do portão às 19h e fechamento às 19h45)</p>
-                <!--<p><strong>Todas as quintas-feiras com início às 20h (abertura do portão às 19h e fechamento às 19h45)</strong>, Gira de Caboclo</p>
-                <p><strong>Na 2ª. quinta-feira do mês,</strong> Gira de Preto Velho</p>-->
-                <p><strong>📍 Localização:</strong> Araraquara / SP</p>
-                <p><strong>🏠 Endereço completo:</strong> Rua São Pedro, 77 - Vila Santa Maria</p>
+                <p><strong>🏠 Endereço completo:</strong> Rua São Pedro, 77 - Vila Santa Maria - Araraquara / SP</p>
+                <p><strong>📍 Localização:</strong> <span class="map-link" onclick="openMapModal()">Ver no Mapa</span></p>
                 <p><em>Venha receber as bênçãos e orientações espirituais</em></p>
             </div>
         </section>
 
         <section id="about">
             <h2>🌸 Sobre o Centro</h2>
-            <!--<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;"> Antigo com coluna-->
             <div style="display: grid; gap: 30px; margin-bottom: 30px;">
                 <div>
                     <p><strong>Bem-vindo à Tenda Espírita de Umbanda Pai Oxalá. Chefe Espiritual - Caboclo Pena Roxa.</strong></p>
@@ -897,21 +995,12 @@
                     <p>Nosso trabalho é fundamentado nos princípios da luz, da compaixão e da evolução contínua, guiados pelas entidades de luz que nos acompanham.</p>
                     <p>Nosso lema: <strong>Umbanda é Paz, Amor e Caridade.</strong></p>
                 </div>
-                <!--<div style="background: linear-gradient(135deg, #F0F8F0 0%, #E8F5E8 100%); padding: 20px; border-radius: 10px; border: 1px solid rgba(178, 216, 178, 0.3);">
-                    <h3>📅 Funcionamento</h3>
-                    <p><strong>📍 Localização:</strong> Araraquara / SP</p>
-                    <p><strong>🕐 Horário:</strong> Quintas-feiras às 20h</p>
-                    <p><strong>🎭 Gira de Caboclo:</strong> Todas as quintas-feiras</p>
-                    <p><strong>👴 Gira de Preto Velho:</strong> Na 2ª quinta-feira do mês</p>
-                    <p><strong>🏠 Endereço completo:</strong>
-                    Rua São Pedro, 77 - Vila Santa Maria</p>
-                </div>-->
             </div>
             <div style="text-align: center; background: linear-gradient(135deg, #B2D8B2 0%, #98D8A8 100%); padding: 25px; border-radius: 12px; margin-top: 30px; color: #2C5530;">
                 <h3>🌟 Nossa Missão</h3>
                 <p><em>"A <strong>Tenda Espírita de Umbanda Pai Oxalá, Chefe Espiritual Caboclo Pena Roxa</strong> foi fundada com o propósito de auxiliar no caminho espiritual, oferecendo amparo, orientação e luz àqueles que buscam equilíbrio e evolução."</em></p>
                 
-                <p>Com o passar do tempo, sob a orientação do <strong>Guia Espiritual "Tô"</strong>, Chefe da Linha dos Boiadeiros da Casa, foi determinado que se trabalhasse para construir um local destinado à <em>"matéria cansada"</em> — pessoas idosas que necessitavam de acolhimento e cuidado.</p>
+                <p>Com o passar do tempo, sob a orientação do <strong>Guia Espiritual "Tô"</strong>, Chefe da Linha dos Boiadeeros da Casa, foi determinado que se trabalhasse para construir um local destinado à <em>"matéria cansada"</em> — pessoas idosas que necessitavam de acolhimento e cuidado.</p>
                 
                 <p>Dessa determinação nasceu o <strong>Lar e Internato Otoniel de Camargo</strong>, localizado na <strong>Avenida Gutenberg, 553 – Vila Xavier – Araraquara/SP</strong>, instituição que acolhe idosos em regime de internato.<br>
                 📅 <strong>Fundação:</strong> 17 de março de 1983<br>
@@ -932,8 +1021,6 @@
             <div class="gallery">
                 <img src="https://drive.google.com/thumbnail?id=1Tj9OpU7_7GeB8hH1BKnNMfxQj_i2ORRa&sz=w1000" alt="Bem Vindo - Entrada da Tenda" loading="lazy">
                 <img src="https://drive.google.com/thumbnail?id=1TysJ-uflAsBzBUX3CO_NguGZZMMxMmuo&sz=w1000" alt="Congá" loading="lazy">
-                <img src="https://drive.google.com/thumbnail?id=INSIRA_ID_IMAGEM_3&sz=w1000" alt="Momento de fraternidade - Confraternização" loading="lazy">
-                <img src="https://drive.google.com/thumbnail?id=INSIRA_ID_IMAGEM_4&sz=w1000" alt="Ambiente sagrado - Altar principal" loading="lazy">
             </div>
         </section>
 
@@ -952,7 +1039,6 @@
                                 <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte3.zip" target="_blank" title="Parte 3">Parte 3</a>
                                 <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte4.zip" target="_blank" title="Parte 4">Parte 4</a>
                                 <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_PANDEIA_Parte5.zip" target="_blank" title="Parte 5">Parte 5</a>
-                                <!-- Adicione mais partes aqui -->
                             </span>
                         </div>
                     </li>
@@ -1010,47 +1096,6 @@
                             </span>
                         </div>
                     </li>
-
-                    <!-- Testes
-                    <!-- Exemplo 1: Livro com várias partes 
-                    <li>
-                        📖 <strong>Livro</strong> - Fundamentos da Umbanda 
-                        <a href="http://espiritismoemaudio1.wikidot.com/local--files/start/LE_AL_Parte1.zip" target="_blank" title="Parte 1">Parte 1</a>
-                        <!-- Adicione mais partes aqui se existirem 
-                    </li>
-
-                    <!-- Exemplo 2: Apostila (apenas uma parte) 
-                    <li>
-                        📝 <strong>Apostila</strong> - Linhas de Trabalho 
-                        <a href="https://drive.google.com/uc?id=INSIRA_ID_APOSTILA&export=download" target="_blank" title="Baixar apostila">Download</a>
-                    </li>
-
-                    <!-- Exemplo 3: Áudio com várias partes 
-                    <li>
-                        🎵 <strong>Áudio</strong> - Meditação com Caboclo Pena Roxa 
-                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIO_PARTE1&export=download" target="_blank" title="Parte 1">Parte 1</a>
-                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIO_PARTE2&export=download" target="_blank" title="Parte 2">Parte 2</a>
-                    </li>
-
-                    <!-- Exemplo 4: Audiobook com várias partes 
-                    <li>
-                        🎧 <strong>Audiobook</strong> - Sabedoria dos Pretos Velhos 
-                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIOBOOK_P1&export=download" target="_blank" title="Parte 1">Parte 1</a>
-                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIOBOOK_P2&export=download" target="_blank" title="Parte 2">Parte 2</a>
-                        <a href="https://drive.google.com/uc?id=INSIRA_ID_AUDIOBOOK_P3&export=download" target="_blank" title="Parte 3">Parte 3</a>
-                    </li>
-
-                    <!-- Exemplo 5: PDF único 
-                    <li>
-                        📄 <strong>PDF</strong> - Hinos e Pontos Cantados 
-                        <a href="https://drive.google.com/uc?id=INSIRA_ID_PDF_2&export=download" target="_blank" title="Baixar PDF">Download</a>
-                    </li>
-
-                    <!-- Exemplo 6: Guia de Meditação (único) 
-                    <li>
-                        🧘‍♀️ <strong>Guia</strong> - Meditação Guiada 
-                        <a href="https://drive.google.com/uc?id=INSIRA_ID_MEDITACAO&export=download" target="_blank" title="Baixar guia">Download</a>
-                    </li>-->
                 </ul>
             </div>
         </section>
@@ -1064,14 +1109,24 @@
                     <p><strong>Data:</strong> Todas as quintas-feiras<br>
                     <strong>Horário:</strong> 20h<br>
                     <strong>Local:</strong> Tenda de Umbanda</p>
-                    <img src="https://drive.google.com/uc?id=INSIRA_ID_CARTAZ_GIRA" alt="Cartaz Gira de Caboclo" onerror="this.style.display='none'" style="height: 180px;">
+                    <div class="gallery">
+                        <img src="https://drive.google.com/thumbnail?id=1ffRZvMLLuYGsUK0_iy3dP1HSkLehUnNc&sz=w1000" 
+                            alt="Cartaz Gira de Caboclo - Todas as quintas-feiras às 20h" 
+                            loading="lazy"
+                            style="width: 280px; height: 200px; object-fit: cover; margin: 10px; border-radius: 12px; cursor: pointer;">
+                    </div>
                 </div>
                 <div class="event">
                     <h3>👴 Gira de Preto Velho - Evento Mensal</h3>
                     <p><strong>Data:</strong> 2ª quinta-feira do mês<br>
                     <strong>Horário:</strong> 20h<br>
-                    <strong>Tema:</strong> Sabedoria ancestral</p>
-                    <img src="https://drive.google.com/uc?id=INSIRA_ID_CARTAZ_PRETO_VELHO" alt="Cartaz Gira de Preto Velho" onerror="this.style.display='none'" style="height: 180px;">
+                    <strong>Local:</strong> Tenda de Umbanda</p>
+                    <div class="gallery">
+                        <img src="https://drive.google.com/thumbnail?id=1IAehImpyR8Wn8i4RuVxaNrxC744DduTg&sz=w1000" 
+                            alt="Cartaz Gira de Preto Velho - Na 2ª quinta-feira do mês às 20h" 
+                            loading="lazy"
+                            style="width: 280px; height: 200px; object-fit: cover; margin: 10px; border-radius: 12px; cursor: pointer;">
+                    </div>
                 </div>
                 <div class="event">
                     <h3>🏠 Atividade no Lar Otoniel de Camargo</h3>
@@ -1139,7 +1194,7 @@
 
         <footer>
             <p>🏹 <strong>Tenda Espírita de Umbanda Pai Oxalá - Caboclo Pena Roxa</strong> 🏹</p>
-            <p>📍 Araraquara / SP | 📧 [Insira email] | 📞 [Insira telefone]</p>
+            <p>📍 Araraquara / SP | 📧 tendapaioxala@exemplo.com | 📞 (16) 99999-9999</p>
             <p style="margin-top: 15px; font-size: 0.9em; color: #4A7C59;">
                 Desenvolvido com amor e luz ✨ | Integração com Google Drive para mídias espirituais
             </p>
@@ -1157,6 +1212,28 @@
                 <button class="nav-btn prev-btn">&#10094;</button>
                 <div class="image-caption"></div>
                 <button class="nav-btn next-btn">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA O MAPA -->
+    <div id="mapModal" class="lightbox">
+        <div class="lightbox-content">
+            <div class="map-container">
+                <span class="close-lightbox" onclick="closeMapModal()">&times;</span>
+                <h3 class="map-title">📍 Localização da Tenda</h3>
+                <iframe 
+                    class="map-iframe"                        
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3704.6097267354835!2d-48.161599599999995!3d-21.7953606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b8f3f5d9c3bf5f%3A0xebd92864ad5c9379!2sR.%20S%C3%A3o%20Pedro%2C%2077%20-%20Vila%20Santa%20Maria%20(Vila%20Xavier)%2C%20Araraquara%20-%20SP%2C%2014810-052!5e0!3m2!1spt-BR!2sbr!4v1763055493968!5m2!1spt-BR!2sbr" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                <div class="lightbox-footer">
+                    <p style="color: #2C5530; margin-top: 10px;">
+                        <strong>Endereço:</strong> Rua São Pedro, 77 - Vila Santa Maria - Araraquara/SP
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -1263,7 +1340,10 @@
             
             // Fechar com ESC
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                    closeMapModal();
+                }
                 if (e.key === 'ArrowLeft') showPrevImage();
                 if (e.key === 'ArrowRight') showNextImage();
             });
@@ -1326,10 +1406,99 @@
             // Por exemplo, esconder prev na primeira imagem e next na última
         }
 
+        // FUNÇÕES PARA O MODAL DO MAPA
+        function openMapModal() {
+            const mapModal = document.getElementById('mapModal');
+            mapModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMapModal() {
+            const mapModal = document.getElementById('mapModal');
+            mapModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fechar modal do mapa ao clicar fora
+        document.getElementById('mapModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMapModal();
+            }
+        });
+
+        // Debounce para eventos de scroll e resize
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Loading otimizado para imagens
+        function optimizedImageLoader() {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.add('loaded');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // Schema.org Structured Data
+        const structuredData = {
+            "@context": "https://schema.org",
+            "@type": "PlaceOfWorship",
+            "name": "Tenda Espírita de Umbanda Pai Oxalá - Caboclo Pena Roxa",
+            "description": "Espaço sagrado dedicado à prática espiritual da Umbanda",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rua São Pedro, 77",
+                "addressLocality": "Araraquara",
+                "addressRegion": "SP",
+                "addressCountry": "BR"
+            },
+            "openingHours": "Th 19:00-22:00",
+            "telephone": "(16) 99999-9999",
+            "url": "https://tendaumbandapaioxala.com.br"
+        };
+
+        // Adicionar structured data ao DOM
+        function addStructuredData() {
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(structuredData);
+            document.head.appendChild(script);
+        }
+
+        // Monitoramento de performance
+        function monitorPerformance() {
+            window.addEventListener('load', function() {
+                const perfData = window.performance.timing;
+                const loadTime = perfData.loadEventEnd - perfData.navigationStart;
+                console.log('Tempo de carregamento:', loadTime + 'ms');
+            });
+        }
+
         // Inicializa o lightbox quando a página carrega
         document.addEventListener('DOMContentLoaded', function() {
             preloadImages();
             initLightbox();
+            optimizedImageLoader();
+            addStructuredData();
+            monitorPerformance();
             
             const images = document.querySelectorAll('.gallery img, .event img');
             images.forEach(img => {
@@ -1388,6 +1557,11 @@
             if (nav.classList.contains('active')) {
                 nav.classList.remove('active');
             }
+        });
+
+        // Monitoramento de erros
+        window.addEventListener('error', function(e) {
+            console.error('Erro na página:', e.error);
         });
     </script>
 </body>
