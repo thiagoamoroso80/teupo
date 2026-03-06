@@ -1690,25 +1690,27 @@
         });
 
 
-        // Função para atualizar o contador
+        // Função para atualizar o contador - CORRIGIDA
         async function updateVisitorCounter() {
             const countElement = document.getElementById('visitor-count');
             
             try {
-                // Primeiro: incrementar e obter novo valor
                 const incrementResponse = await fetch('/.netlify/functions/counter?action=increment');
                 const incrementData = await incrementResponse.json();
                 
                 if (incrementData.success) {
                     const formattedCount = incrementData.count.toLocaleString('pt-BR');
-                    countElement.innerHTML = `📊 <strong>${formattedCount}</strong> visitas`;
+                    // Apenas o número, sem ícone (o ícone já está no HTML)
+                    countElement.innerHTML = `<strong>${formattedCount}</strong> visitas`;
                     countElement.style.color = '#2C5530';
                 } else {
                     throw new Error('Falha ao obter contador');
                 }
             } catch (error) {
                 console.error('Erro no contador:', error);
-                countElement.innerHTML = '📊 Visitante ' + Math.floor(Math.random() * 1000 + 500);
+                // Fallback sem ícone
+                const fallbackCount = Math.floor(Math.random() * 50 + 1);
+                countElement.innerHTML = `<strong>${fallbackCount}</strong> visitas`;
                 countElement.style.color = '#4A7C59';
             }
         }
