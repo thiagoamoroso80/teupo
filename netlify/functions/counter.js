@@ -1,11 +1,9 @@
 // netlify/functions/counter.js
-// Versão simplificada sem depender de Blobs
+// Versão com funções de reset e controle
 
-// Simular um banco de dados em memória
 const counterStore = {};
 
 exports.handler = async (event, context) => {
-    // Configurar headers CORS
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
@@ -13,7 +11,6 @@ exports.handler = async (event, context) => {
         'Content-Type': 'application/json'
     };
 
-    // Responder a preflight requests
     if (event.httpMethod === 'OPTIONS') {
         return {
             statusCode: 200,
@@ -23,28 +20,53 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        // Obter a página da query string
         const page = event.queryStringParameters?.page || 'home';
         const action = event.queryStringParameters?.action || 'increment';
+        const adminKey = event.queryStringParameters?.admin; // Para ações administrativas
 
-        // Chave única para a página
         const key = `page_${page}`;
+
+        // Ações administrativas (protegidas por senha simples)
+        if (adminKey === 'tenda2026') { // Mude para uma senha de sua preferência
+            if (action === 'reset') {
+                counterStore[key] = 0;
+                return {
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify({
+                        success: true,
+                        message: 'Contador resetado com sucesso',
+                        count: 0
+                    })
+                };
+            }
+            
+            if (action === 'set') {
+                const newValue = parseInt(event.queryStringParameters?.value) || 0;
+                counterStore[key] = newValue;
+                return {
+                    statusCode: 200,
+                    headers,
+                    body: JSON.stringify({
+                        success: true,
+                        message: `Contador ajustado para ${newValue}`,
+                        count: newValue
+                    })
+                };
+            }
+        }
 
         // Inicializar se não existir
         if (!counterStore[key]) {
-            counterStore[key] = 1000; // Começa em 1000 (número base)
+            counterStore[key] = 0;
         }
 
         let count = counterStore[key];
 
-        // Se for para incrementar (nova visita)
         if (action === 'increment') {
             count = counterStore[key] + 1;
             counterStore[key] = count;
         }
-
-        // Log para debugging
-        console.log(`Página: ${page}, Ação: ${action}, Contador: ${count}`);
 
         return {
             statusCode: 200,
