@@ -1,9 +1,6 @@
 [build]
-  command = "# não precisa de build"
   functions = "netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
-  
-[[functions]]
-  directory = "netlify/functions/counter"
+  external_node_modules = []
