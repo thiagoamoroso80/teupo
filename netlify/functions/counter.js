@@ -1,54 +1,72 @@
-// netlify/functions/counter/counter.js
-export default async (req) => {
+// netlify/functions/counter.js
+// Versão simplificada sem depender de Blobs
+
+// Simular um banco de dados em memória
+const counterStore = {};
+
+exports.handler = async (event, context) => {
+    // Configurar headers CORS
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Content-Type': 'application/json'
+    };
+
+    // Responder a preflight requests
+    if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers,
+            body: ''
+        };
+    }
+
     try {
-        // Configurar CORS
-        const headers = {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'Content-Type',
-            'Content-Type': 'application/json'
+        // Obter a página da query string
+        const page = event.queryStringParameters?.page || 'home';
+        const action = event.queryStringParameters?.action || 'increment';
+
+        // Chave única para a página
+        const key = `page_${page}`;
+
+        // Inicializar se não existir
+        if (!counterStore[key]) {
+            counterStore[key] = 1000; // Começa em 1000 (número base)
+        }
+
+        let count = counterStore[key];
+
+        // Se for para incrementar (nova visita)
+        if (action === 'increment') {
+            count = counterStore[key] + 1;
+            counterStore[key] = count;
+        }
+
+        // Log para debugging
+        console.log(`Página: ${page}, Ação: ${action}, Contador: ${count}`);
+
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({
+                success: true,
+                page: page,
+                count: count,
+                timestamp: new Date().toISOString()
+            })
         };
 
-        // Para requisições OPTIONS (preflight)
-        if (req.method === 'OPTIONS') {
-            return new Response(null, { headers, status: 204 });
-        }
-
-        // Obter a página sendo visitada
-        const url = new URL(req.url);
-        const page = url.searchParams.get('page') || 'home';
-
-        // Usar Netlify Blobs para armazenar o contador
-        const store = process.env.NETLIFY_BLOBS_TOKEN 
-            ? await NetlifyBlobs.getStore('counter-store')
-            : null;
-
-        let count = 0;
-        
-        if (store) {
-            // Ler contador atual
-            const data = await store.get(page, { type: 'json' });
-            count = (data?.count || 0) + 1;
-            
-            // Salvar novo valor
-            await store.set(page, { count });
-        } else {
-            // Fallback para desenvolvimento local
-            count = Math.floor(Math.random() * 1000) + 100;
-        }
-
-        return new Response(JSON.stringify({
-            success: true,
-            page,
-            count
-        }), { headers });
-
     } catch (error) {
-        return new Response(JSON.stringify({
-            success: false,
-            error: error.message
-        }), { 
-            status: 500,
-            headers: { 'Content-Type': 'application/json' }
-        });
+        console.error('Erro no contador:', error);
+        
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({
+                success: false,
+                error: error.message
+            })
+        };
     }
 };
