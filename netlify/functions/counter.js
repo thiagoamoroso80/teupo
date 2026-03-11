@@ -1,80 +1,33 @@
 // netlify/functions/counter.js
-// Versão com funções de reset e controle
-
-const counterStore = {};
+// Versão que redireciona para CountAPI (opcional)
 
 exports.handler = async (event, context) => {
     const headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
         'Content-Type': 'application/json'
     };
 
     if (event.httpMethod === 'OPTIONS') {
         return {
-            statusCode: 200,
+            statusCode: 204,
             headers,
             body: ''
         };
     }
 
     try {
-        const page = event.queryStringParameters?.page || 'home';
-        const action = event.queryStringParameters?.action || 'increment';
-        const adminKey = event.queryStringParameters?.admin; // Para ações administrativas
-
-        const key = `page_${page}`;
-
-        // Ações administrativas (protegidas por senha simples)
-        if (adminKey === 'tenda2026') { // Mude para uma senha de sua preferência
-            if (action === 'reset') {
-                counterStore[key] = 0;
-                return {
-                    statusCode: 200,
-                    headers,
-                    body: JSON.stringify({
-                        success: true,
-                        message: 'Contador resetado com sucesso',
-                        count: 0
-                    })
-                };
-            }
-            
-            if (action === 'set') {
-                const newValue = parseInt(event.queryStringParameters?.value) || 0;
-                counterStore[key] = newValue;
-                return {
-                    statusCode: 200,
-                    headers,
-                    body: JSON.stringify({
-                        success: true,
-                        message: `Contador ajustado para ${newValue}`,
-                        count: newValue
-                    })
-                };
-            }
-        }
-
-        // Inicializar se não existir
-        if (!counterStore[key]) {
-            counterStore[key] = 0;
-        }
-
-        let count = counterStore[key];
-
-        if (action === 'increment') {
-            count = counterStore[key] + 1;
-            counterStore[key] = count;
-        }
+        // Redirecionar para CountAPI
+        const response = await fetch('https://api.countapi.xyz/hit/teupo-tenda/visitas');
+        const data = await response.json();
 
         return {
             statusCode: 200,
             headers,
             body: JSON.stringify({
                 success: true,
-                page: page,
-                count: count,
+                count: data.value,
                 timestamp: new Date().toISOString()
             })
         };
