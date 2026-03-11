@@ -1589,15 +1589,14 @@
             const countElement = document.getElementById('visitor-count');
             
             try {
-                const incrementResponse = await fetch('/.netlify/functions/counter?action=increment');
-                const incrementData = await incrementResponse.json();
+                // Usando CountAPI para persistência
+                const response = await fetch('https://api.countapi.xyz/hit/teupo-tenda/visitas');
+                const data = await response.json();
                 
-                if (incrementData.success) {
-                    const formattedCount = incrementData.count.toLocaleString('pt-BR');
+                if (data.value) {
+                    const formattedCount = data.value.toLocaleString('pt-BR');
                     countElement.innerHTML = `<strong>${formattedCount}</strong> visitas`;
                     countElement.style.color = '#2C5530';
-                } else {
-                    throw new Error('Falha ao obter contador');
                 }
             } catch (error) {
                 console.error('Erro no contador:', error);
