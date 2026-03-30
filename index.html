@@ -890,6 +890,135 @@
         .map-link:hover {
             color: #2C5530;
         }
+
+        /* MODAL DE AVISO/ALERTA */
+        .alert-modal {
+            display: none;
+            position: fixed;
+            z-index: 10002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(44, 85, 48, 0.95);
+            backdrop-filter: blur(8px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .alert-modal-content {
+            position: relative;
+            background: linear-gradient(135deg, #F0F8F0 0%, #E8F5E8 100%);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border: 2px solid #B2D8B2;
+            animation: zoomIn 0.3s ease;
+
+            /* CENTRALIZAÇÃO PERFEITA */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+        }
+
+        .alert-modal-header {
+            background: linear-gradient(135deg, #B2D8B2 0%, #98D8A8 100%);
+            padding: 15px 20px;
+            border-radius: 18px 18px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(255,255,255,0.6);
+        }
+
+        .alert-modal-header h3 {
+            color: #2C5530;
+            margin: 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-close {
+            color: #2C5530;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .alert-close:hover {
+            background: rgba(255,255,255,0.5);
+            transform: rotate(90deg);
+        }
+
+        .alert-modal-body {
+            padding: 25px;
+            color: #2C5530;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .alert-modal-body p {
+            margin-bottom: 15px;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .alert-modal-body .alert-icon {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .alert-modal-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #B2D8B2;
+            text-align: center;
+        }
+
+        .alert-modal-footer button {
+            background: linear-gradient(135deg, #B2D8B2 0%, #98D8A8 100%);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            color: #2C5530;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .alert-modal-footer button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(44, 85, 48, 0.2);
+        }
+
+        /* Ajuste para telas muito pequenas */
+        @media (max-width: 600px) {
+            .alert-modal-content {
+                width: 95%;
+                max-width: 95%;
+            }
+            
+            .alert-modal-body {
+                padding: 20px;
+                max-height: 70vh;
+            }
+            
+            .alert-modal-header h3 {
+                font-size: 1.1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1287,6 +1416,29 @@
         </div>
     </div>
 
+    <!-- MODAL DE AVISO/ALERTA -->
+    <div id="alertModal" class="alert-modal">
+        <div class="alert-modal-content">
+            <div class="alert-modal-header">
+                <h3>
+                    <span>📢</span> Aviso Importante
+                </h3>
+                <span class="alert-close" onclick="closeAlertModal()">&times;</span>
+            </div>
+            <div class="alert-modal-body">
+                <div class="alert-icon">🕯️</div>
+                <p><strong>Prezados(as) frequentadores(as),</strong></p>
+                <p>Informamos que <strong>NÃO HAVERÁ TRABALHO</strong> no dia <strong>02/04/2026</strong>.</p>
+                <p>As atividades retornarão normalmente na semana seguinte.</p>
+                <p style="margin-top: 15px; font-style: italic;">Agradecemos pela compreensão.</p>
+                <p style="margin-top: 10px;">🌟 <strong>Axé a todos!</strong> 🌟</p>
+            </div>
+            <div class="alert-modal-footer">
+                <button onclick="closeAlertModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Função para toggle do menu hambúrguer
         function toggleMobileMenu() {
@@ -1513,6 +1665,37 @@
             });
         }
 
+        // FUNÇÕES PARA O MODAL DE ALERTA
+        function showAlertModal() {
+            const modal = document.getElementById('alertModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeAlertModal() {
+            const modal = document.getElementById('alertModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('alertModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAlertModal();
+            }
+        });
+
+        // Fechar com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAlertModal();
+            }
+        });
+
         // Inicializa o lightbox quando a página carrega
         document.addEventListener('DOMContentLoaded', function() {
             preloadImages();
@@ -1648,6 +1831,8 @@
         // Executar quando a página carregar
         document.addEventListener('DOMContentLoaded', updateVisitorCounter);
         window.addEventListener('popstate', updateVisitorCounter);
+        // Mostrar modal de alerta (descomente quando precisar)
+        showAlertModal();
 
     </script>
 </body>
