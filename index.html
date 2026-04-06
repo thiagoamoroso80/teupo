@@ -1002,12 +1002,17 @@
             color: #2C5530;
             max-height: 60vh;
             overflow-y: auto;
+            text-align: center;
         }
 
         .alert-modal-body p {
             margin-bottom: 15px;
             text-align: left;
             line-height: 1.5;
+        }
+
+        .alert-modal-body div {
+            text-align: center;
         }
 
         .alert-modal-body .alert-icon {
@@ -1037,6 +1042,14 @@
         .alert-modal-footer button:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 12px rgba(44, 85, 48, 0.2);
+        }
+
+        .alert-modal-body .alert-icon img {
+            transition: transform 0.3s ease;
+        }
+
+        .alert-modal-body .alert-icon img:hover {
+            transform: scale(1.05);
         }
 
         /* Ajuste para telas muito pequenas */
@@ -1094,7 +1107,7 @@
                 <p><em>Venha receber as bênçãos e orientações espirituais</em></p>
 
                 <h3>📖 Orientações do Centro</h3>
-                <p><strong>Dia de Passe -</strong> às quintas-feiras, o portão é aberto às 19h e fechado às 19h50min.</p>
+                <p><strong>Dia de Passe -</strong> às quintas-feiras, o portão é aberto às 19h e fechado às 19h45min.</p>
                 <p><strong>Vindo ao Centro -</strong> se já foi passado algum banho de defesa, no dia que vier ao Centro, tomar o banho de defesa e acender uma vela branca comum para o anjo da guarda. </p>
                 <p><strong>Trajes / Roupas -</strong> preferencialemte roupas claras, não utilizar cores escuras. Para as <strong>mulheres,</strong> não usar saia, vestidos, bermudas e blusas decotadas ou transparentes. 
                                                       Para os <strong>homens,</strong> não usar camiseta regata e bermuda. </p>
@@ -1211,6 +1224,12 @@
                     <strong>Local:</strong> Espaço de Eventos Lar Otoniel de Camargo</br>
                     <strong>Atividade:</strong> O BINGO mensal em prol do Lar Otoniel de Camargo, ocorre sempre na 1ª sexta-feira do mês. Realizado no Salão de Festas do Lar Otoniel de Camargo, esse evento tem como objetivo a arrecadação de verbas para sustentação e manutenção do Lar.</p>
                                             <p> Acolhemos vidas, cuidamos com amor. Nossos idosos são acolhidos com dignidade e respeito.</p>
+                    <div class="gallery">
+                        <img src="https://drive.google.com/thumbnail?id=1-uNedZ778poUgmO_glStVV7ASVqmkMXi&sz=w1000" 
+                            alt="Bingo Mensal - Dia 10/04/2026 à partir das 19h" 
+                            loading="lazy"
+                            style="width: 280px; height: 200px; object-fit: cover; margin: 10px; border-radius: 12px; cursor: pointer;">
+                    </div>
                 </div>
                 
                 <!-- Flashback -->
@@ -1461,12 +1480,26 @@
                 </h3>
                 <span class="alert-close" onclick="closeAlertModal()">&times;</span>
             </div>
-            <div class="alert-modal-body">
+            <!-- Alerta de Informações que não haverá trabalho-->
+            <!--<div class="alert-modal-body">
                 <div class="alert-icon">🕯️</div>
                 <p><strong>Prezados(as) frequentadores(as),</strong></p>
                 <p>Informamos que <strong>NÃO HAVERÁ TRABALHO</strong> no dia <strong>02/04/2026</strong>.</p>
                 <p>As atividades retornarão normalmente na semana seguinte.</p>
                 <p style="margin-top: 15px; font-style: italic;">Agradecemos pela compreensão.</p>
+                <p style="margin-top: 10px;">🌟 <strong>Axé a todos!</strong> 🌟</p>
+            </div> -->
+            <!-- Alerta de Trabalho de Preto Velho-->
+            <div class="alert-modal-body";>
+                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <img src="https://drive.google.com/thumbnail?id=11mKpx8T4b09TVeYErQWRRxY-9fZ9VT9w&sz=w500" 
+                        alt="Preto Velho" 
+                        style="width: 80px; height: 80px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 15px rgba(44, 85, 48, 0.2);">
+                </div>
+                <p><strong>Prezados(as) frequentadores(as),</strong></p>
+                <p>Informamos que nesta <strong>QUINTA-FEIRA (09/04/2026) </strong> teremos a passagem de linha de <strong>Preto Velho</strong>.</p>
+                <p>Tragam seu Axé e venham sentir essa energia tão pura.</p>
+                <p style="margin-top: 15px; font-style: italic;">Agradecemos a presença de todos.</p>
                 <p style="margin-top: 10px;">🌟 <strong>Axé a todos!</strong> 🌟</p>
             </div>
             <div class="alert-modal-footer">
@@ -1868,7 +1901,7 @@
         document.addEventListener('DOMContentLoaded', updateVisitorCounter);
         window.addEventListener('popstate', updateVisitorCounter);
         // Mostrar modal de alerta (descomente quando precisar)
-        showAlertModal();
+         showAlertModal();
 
     </script>
 </body>
