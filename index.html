@@ -1068,6 +1068,137 @@
                 font-size: 1.1em;
             }
         }
+
+        /* ESTILO PERGAMINHO / PAPEL ANTIGO */
+        .pontos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .ponto-pergaminho {
+            background: #FDF8E7;
+            background-image: 
+                linear-gradient(rgba(200, 180, 120, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 20% 30%, rgba(160, 120, 60, 0.05) 2px, transparent 2px);
+            background-size: 100% 30px, 40px 40px;
+            padding: 20px 18px;
+            border-radius: 8px 20px 8px 20px;
+            box-shadow: 
+                0 6px 15px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
+                inset 0 0 0 2px rgba(160, 120, 60, 0.3);
+            border-left: 1px solid rgba(160, 120, 60, 0.4);
+            border-top: 1px solid rgba(160, 120, 60, 0.3);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ponto-pergaminho:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Efeito de borda queimada/rasgada */
+        .ponto-pergaminho::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: transparent;
+            border-radius: 10px 22px 10px 22px;
+            pointer-events: none;
+            box-shadow: inset 0 0 10px rgba(100, 60, 20, 0.1);
+        }
+
+        /* Canto dobrado */
+        .ponto-pergaminho::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, transparent 50%, rgba(140, 100, 50, 0.12) 50%);
+            border-radius: 0 0 20px 0;
+            pointer-events: none;
+        }
+
+        /* Título do ponto */
+        .ponto-titulo {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #4A3520;
+            text-align: center;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 0 rgba(200, 180, 120, 0.5);
+        }
+
+        .ponto-titulo-container {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        /* Letra da música - MAIS COMPACTA */
+        .ponto-letra {
+            font-family: 'Courier New', 'Segoe UI', monospace;
+            font-size: 0.8em;
+            line-height: 1.5;
+            color: #3E2A1A;
+            text-align: center;
+            white-space: pre-line;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .ponto-letra p {
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        /* Linha decorativa */
+        .ponto-divider {
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C4A86B, #8B6914, #C4A86B, transparent);
+            margin: 8px auto 12px auto;
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .pontos-container {
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 20px;
+            }
+            
+            .ponto-pergaminho {
+                padding: 15px 12px;
+            }
+            
+            .ponto-titulo {
+                font-size: 1em;
+            }
+            
+            .ponto-letra {
+                font-size: 0.7em;
+                line-height: 1.4;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .pontos-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -1084,8 +1215,9 @@
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
             <nav id="main-nav">
                 <a href="#about">Sobre</a>
-                <a href="#gallery">Galeria</a>
                 <a href="#atendimento">Atendimento</a>
+                <a href="#pontos">Pontos</a>
+                <a href="#gallery">Galeria</a>
                 <a href="#eventos">Agenda de Eventos</a>
                 <a href="#library">Biblioteca</a>
             </nav>
@@ -1146,16 +1278,6 @@
             </div>
         </section>
 
-        <section id="gallery">
-            <h2>📸 Galeria de Fotos</h2>
-            <p style="text-align: center; margin-bottom: 30px; color: #4A7C59;">Momentos de luz, trabalho espiritual e fraternidade</p>
-            <div class="gallery">
-                <img src="https://drive.google.com/thumbnail?id=1Tj9OpU7_7GeB8hH1BKnNMfxQj_i2ORRa&sz=w1000" alt="Bem Vindo - Entrada da Tenda" loading="lazy">
-                <img src="https://drive.google.com/thumbnail?id=1TysJ-uflAsBzBUX3CO_NguGZZMMxMmuo&sz=w1000" alt="Congá" loading="lazy">
-                <img src="https://drive.google.com/thumbnail?id=1ujxSfn4Mam1yQ8HtSs7GsdsM36S1XdAY&sz=w1000" alt="Oferenda para Oxóssi" loading="lazy">
-            </div>
-        </section>
-
         <section id="atendimento">
             <h2>🕯️🏹👴 Linhas de Atendimento</h2>
             <p style="text-align: center; margin-bottom: 25px; color: #4A7C59;">Nossas linhas de atendimento ao Público</p>
@@ -1190,6 +1312,121 @@
                 </div>
         </section>
 
+        <section id="pontos">
+            <h2>🪘 Pontos Cantados</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #4A7C59;">Alguns pontos cantados durante os trabalhos</p>
+            <div class="pontos-container">
+
+                <!-- PONTO 1 - HINO da UMBANDA -->
+                <div class="ponto-pergaminho">
+                    <div class="ponto-titulo-container">
+                        <div class="ponto-titulo">🏹 Hino da Umbanda</div>
+                    </div>
+                    <div class="ponto-divider"></div>
+                    <div class="ponto-letra">
+                        <p>Refletiu a luz divina <br>
+                           Em todo seu esplendor <br>
+                           Vem do reino de Oxalá <br>
+                           Onde há paz e amor <br>
+                           Luz que refletiu na terra <br>
+                           Luz que refletiu no mar <br>
+                           Luz que veio de Aruanda <br>
+                           Para tudo iluminar </p>
+                        <p>🌿🌿🌿</p>
+                        <p>Umbanda é paz e amor <br>
+                           Um mundo cheio de Luz <br>
+                           É força que nos dá vida <br>
+                           É a grandeza nos conduz </p>
+                        <p>🌿🌿🌿</p>
+                        <p>Avante, filhos de fé <br>
+                           Como a nossa lei não há <br>
+                           Levando ao mundo inteiro <br>
+                           A bandeira de Oxalá </p>
+                    </div>
+                </div>
+
+                <!-- PONTO 2 - HINO do Primado de UMBANDA -->
+                <div class="ponto-pergaminho">
+                    <div class="ponto-titulo-container">
+                        <div class="ponto-titulo">🏹 Hino do Primado de Umbanda</div>
+                    </div>
+                    <div class="ponto-divider"></div>
+                    <div class="ponto-letra">
+                        <p>Avante <br>
+                           Soldados de Oxalá <br>
+                           Por nossa Umbanda <br>
+                           Sempre havemos de lutar <br>
+                        <p>🌿🌿🌿</p>
+                        <p>Nossos, caboclos <br>    
+                           Nossos caboclos <br>
+                           Descendo de Aruanda <br>
+                           Vem saravá e abençoar <br>
+                           O Primado de Umbanda <br>
+                           Unidos ! </p>
+                        <p>🌿🌿🌿</p>
+                        <p>Nós havemos de lutar <br>
+                           Pra maior glória <br>
+                           Nossa Umbanda alcançar </p>
+                        <p>🌿🌿🌿</p>
+                        <p> Meu Pai Oxóssi, meu Pai Xangô <br>
+                            E o guerreiro de Aruanda <br>
+                            Iluminai, protejei e guiai <br>
+                            O Primado de Umbanda </p>
+                    </div>
+                </div>
+
+                <!-- PONTO 3 - DEFUMAÇÃO -->
+                <div class="ponto-pergaminho">
+                    <div class="ponto-titulo-container">
+                        <div class="ponto-titulo">🏹 Defumação I</div>
+                    </div>
+                    <div class="ponto-divider"></div>
+                    <div class="ponto-letra">
+                        <p>Corre gira Pai Ogum <br>
+                           Filhos querem se defumar <br>
+                           A Umbanda tem fundamento <br>
+                           É preciso preparar <br>
+                           Com incenso e benjoim <br>
+                           Alecrim e alfazema <br>
+                           Oi defumar, filhos de fé <br>
+                           Com as ervas da Jurema<br>
+                        <p>🌿🌿🌿</p>
+                    </div>
+                    <div class="ponto-titulo-container">
+                        <div class="ponto-titulo">🏹 Defumação II</div>
+                    </div>
+                    <div class="ponto-divider"></div>
+                    <div class="ponto-letra">
+                        <p>Sete folhas da Jurema <br>
+                           Cheirou guiné <br>
+                           Defumar a nossa Umbanda <br>
+                           Filhos de fé <br>
+                        <p>🌿🌿🌿</p>
+                    </div>
+                    <div class="ponto-titulo-container">
+                        <div class="ponto-titulo">🏹 Defumação III</div>
+                    </div>
+                    <div class="ponto-divider"></div>
+                    <div class="ponto-letra">
+                        <p>Defuma com as ervas da Jurema <br>
+                           Defuma com arruda e guiné <br>
+                           Alecrim, benjoim e alfazema <br>
+                           Vamos defumar, filhos de fé </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <h2>📸 Galeria de Fotos</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #4A7C59;">Momentos de luz, trabalho espiritual e fraternidade</p>
+            <div class="gallery">
+                <img src="https://drive.google.com/thumbnail?id=1Tj9OpU7_7GeB8hH1BKnNMfxQj_i2ORRa&sz=w1000" alt="Bem Vindo - Entrada da Tenda" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=1TysJ-uflAsBzBUX3CO_NguGZZMMxMmuo&sz=w1000" alt="Congá" loading="lazy">
+                <img src="https://drive.google.com/thumbnail?id=1ujxSfn4Mam1yQ8HtSs7GsdsM36S1XdAY&sz=w1000" alt="Oferenda para Oxóssi" loading="lazy">
+            </div>
+        </section>
+
         <section id="eventos">
             <h2>📅 Agenda de Eventos</h2>
             <p style="text-align: center; margin-bottom: 25px; color: #4A7C59;">Data dos eventos em prol do Lar Otoniel e Casa Ary Luiz Bombarda </p>
@@ -1217,37 +1454,37 @@
                 <!-- Bingo -->
                 <div class="event">
                     <h1>Bingo Mensal</h1>
-                    <h2>Dia 10/04/2026</h2>
+                    <h2>Dia 08/05/2026</h2>
                     <h3>🏠 Lar Otoniel de Camargo</h3>
-                    <p><strong>Data:</strong> 10 de Abril de 2026<br>
+                    <p><strong>Data:</strong> 08 de Maio de 2026<br>
                     <strong>Horário:</strong> 19h<br>
                     <strong>Local:</strong> Espaço de Eventos Lar Otoniel de Camargo</br>
                     <strong>Atividade:</strong> O BINGO mensal em prol do Lar Otoniel de Camargo, ocorre sempre na 1ª sexta-feira do mês. Realizado no Salão de Festas do Lar Otoniel de Camargo, esse evento tem como objetivo a arrecadação de verbas para sustentação e manutenção do Lar.</p>
                                             <p> Acolhemos vidas, cuidamos com amor. Nossos idosos são acolhidos com dignidade e respeito.</p>
-                    <div class="gallery">
+                    <!--<div class="gallery">
                         <img src="https://drive.google.com/thumbnail?id=1-uNedZ778poUgmO_glStVV7ASVqmkMXi&sz=w1000" 
-                            alt="Bingo Mensal - Dia 10/04/2026 à partir das 19h" 
+                            alt="Bingo Mensal" 
                             loading="lazy"
                             style="width: 280px; height: 200px; object-fit: cover; margin: 10px; border-radius: 12px; cursor: pointer;">
-                    </div>
+                    </div>-->
                 </div>
                 
                 <!-- Flashback -->
                 <div class="event">
                     <h1>Noite do FlashBack</h1>
-                    <h2>Dia 11/04/2026</h2>
+                    <h2>Dia 09/05/2026</h2>
                     <h3>🏠 Lar Otoniel de Camargo</h3>
-                    <p><strong>Data:</strong> 11 de Abril de 2026<br>
+                    <p><strong>Data:</strong> 09 de Maio de 2026<br>
                     <strong>Horário:</strong> 20h<br>
                     <strong>Local:</strong> Espaço de Eventos Lar Otoniel de Camargo</br>
-                    <strong>Atividade:</strong> Dia 11 de abril, às 20h, tem mais uma noite de muita música e animação no Lar Otoniel de Camargo!</p>
+                    <strong>Atividade:</strong> Mais uma noite de muita música e animação no Lar Otoniel de Camargo!</p>
                                             <p> Venha relembrar os hits que marcaram gerações e curtir o melhor dos anos 70, 80, 90 e 2000 com o som do DJ Marcelo Costa. 💃🕺</p>
                                             <p> Chame os amigos e venha viver essa noite cheia de nostalgia e diversão! </p>
-                                            <p>📞 Para mais informações: (16) 99645-9797</p>
+                                            <p>📞 Para mais informações: (16) 99797-5215</p>
                     
                     <div class="gallery">
                         <img src="https://drive.google.com/thumbnail?id=1zR43IbjH0-HZE8vQ_VX4dLGXLY9YRa8z&sz=w1000" 
-                            alt="Noite do FlashBack - Dia 11/04/2026 à partir das 20h" 
+                            alt="Noite do FlashBack" 
                             loading="lazy"
                             style="width: 280px; height: 200px; object-fit: cover; margin: 10px; border-radius: 12px; cursor: pointer;">
                     </div>
